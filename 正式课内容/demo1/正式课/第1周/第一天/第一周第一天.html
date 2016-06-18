@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div >
+    <div></div>
+    <div></div>
+    <div>11111</div>
+    <div id="div1"></div>
+</div>
+
+<script>
+    //基本数据类型和引用数据类型的本质区别在于内存的分配方式不同
+ var div=document.body.appendChild(document.createElement("div"));
+    div.innerHTML="我是第一个";
+    var newDiv=div.cloneNode(true);
+    document.body.insertBefore(newDiv,div);
+newDiv.innerHTML="我是第二个";
+    document.documentElement.clientHeight||document.body.clientHeight;
+
+var div1=document.getElementById("div1");
+    function getPrv(ele){
+        if(ele.previousElementSibling){
+           return ele.previousElementSibling;
+        }
+        var pre=ele.previousSibling;
+        while(pre&&pre.nodeType==1){
+
+        }
+    }
+ //   console.log(getPrv(div1));
+
+
+
+var ary=[1,2,3,4];
+    function fn(ary){
+        ary[0]=0; ary=[0];ary[0]=100;
+        return ary
+    }
+    var res=fn(ary);
+    console.log(res);
+
+</script>
+
+
+</body>
+
+</html>

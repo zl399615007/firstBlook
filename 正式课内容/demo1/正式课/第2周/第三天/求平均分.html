@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //求平均分：去掉最高分和最低分，然后求平均数
+    //sort方法是数组方法，arguments是一个类数组的对象，所以不能直接用sort这个方法
+//    function avgFn(){
+//        var ary=[];
+//        for(var i=0;i<arguments.length;i++){
+//            var cur=arguments[i];
+//            ary[ary.length]=cur;
+//        }
+//        ary.sort(function(a,b){return a-b});
+//        ary.shift();
+//        ary.length--;
+//        return (eval(ary.join("+"))/ary.length).toFixed(2);
+//    };
+//    console.log(avgFn(1,2,3,4,5,4,2,2));
+
+
+//    function avgFn(){
+//
+//        [].sort.call(arguments,function(a,b){return a-b});
+//        [].shift.call(arguments);
+//        [].pop.call(arguments);
+//
+//     return (eval([].join.call(arguments,"+"))/arguments.length).toFixed(2)
+//
+//    }
+//    console.log(avgFn(1,2,3,4,5,4,2,2));
+
+
+    function avgFn(){
+        var a=Array.prototype.slice.call(arguments,0);//借用数组原型上的slice方法，当slice执行的时候，让方法中的this变成要处理的arguments，实现将类数组argumrnts转换为数组
+        a.sort(function (a, b) {
+            return a-b;
+        })
+        a.pop;
+        a.shift();
+        return (eval(a.join("+"))/ a.length).toFixed(2)
+    }
+    console.log(avgFn(1,2,3,4,5,4,2,2));
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

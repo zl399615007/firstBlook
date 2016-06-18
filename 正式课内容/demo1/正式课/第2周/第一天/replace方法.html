@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //所有的值类型实例上的方法，都不会修改原来的实例，而是返回一个新的值
+//var str="18974455";
+//    var a=["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+    //replace的第二个参数为函数，表示以这个函数的运行结果为替换值，当这个函数运行的时候，replace方法会自动给这个函数最少传三个参数，分别是1：前边正则匹配到的结果；2：此结果在原字符串中的索引位置；3：原输入字符
+//    str=str.replace(/\d/g,function(value){
+ //       return a[value];
+
+//    });
+//console.log(str);
+
+//    var str="123gd785gfg998gfhir688gk387";
+//    //匹配上边字符串中连续出现的数字，用他们的和将其替换
+//    str=str.replace(/(\d)(\d)(\d)/g,function(){
+//        return -1*(-arguments[1]-arguments[2]-arguments[3])
+//    });
+
+
+    var str="1432453654";
+    str=str.replace(/\d(?!=$)/g, function (a, b, c) {
+        var d= c.length-b-1;
+        if(d!=0&&d%3==0){
+            return a+",";
+        }else{
+            return a;
+        }
+    })
+
+    console.log(str);
+</script>
+</body>
+</html>

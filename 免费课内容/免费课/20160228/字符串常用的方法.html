@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //charAt(索引)  根据索引获取相应的字符
+    //charCodeAt()  根据索引获取相应字符的ASCII值
+
+    //split("")  根据指定的字符串拆分成数组  和join是相对的
+
+    //indexOf（） 从前往后找，返回当前字符的索引（浏览器都兼容）
+    //lastIndexOf() 从后往前找，返回当前字符的索引
+    //没有找到字符则返回-1
+
+    //截取字符串的三个方法
+    //substr(n,m) 从索引n开始截取m个
+    //substring(n,m) 从索引n开始截取到索引m（不包含m）
+    //slice(n,m）  支持负数索引，其他同上
+
+    //改变字符串字母大小写转换
+    //toLowerCase() 将字母改成小写
+    //toUpperCase() 将字母改成大写
+
+    //replace(n,m) n=老字符，m=新字符，每次调用方法只替换一次
+
+    var str="2016-8-23 18:30:50";
+    function getTime(str){
+        var n=str.indexOf(" ");
+        var str1=str.substring(0,n);
+        var str2=str.substr(n+1);
+        var ary1=str1.split("-");
+        var ary2=str2.split(":");
+        str=ary1[0]+"年"+ary1[1]+"月"+ary1[2]+"日"+ary2[0]+"时"+ary2[1]+"分"+ary2[2]+"秒";
+        return str;
+    }
+    console.log(getTime(str));
+
+</script>
+
+</body>
+</html>

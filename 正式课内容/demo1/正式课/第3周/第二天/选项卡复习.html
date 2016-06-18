@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #tab{
+            height: 500px;
+            width: 600px;
+            margin: 20px auto;
+        }
+        #tab ul{
+            list-style: none;
+        }
+        #tab ul li{
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+            float: left;
+            background: lightblue;
+            border: 1px solid green;
+            text-align: center;
+            line-height: 40px;
+        }
+        #tab div{
+            clear: both;
+            height: 200px;
+            width: 600px;
+            border-radius: 10px;
+            border: 1px solid red;
+            display: none;
+        }
+        #tab div.selectdiv{
+            display: block;
+            background: lightblue;
+        }
+        #tab li.selectli{
+            background: darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul >
+        <li class="selectli">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div class="selectdiv">内容一</div>
+    <div>内容二</div>
+    <div>内容三</div>
+</div>
+<script>
+    var oTab=document.getElementById("tab");
+    var oLis=oTab.getElementsByTagName("li");
+    var odiv=oTab.getElementsByTagName("div");
+
+    for(var i=0;i<oLis.length;i++){
+        oLis[i].onclick = changeTab;
+    }
+    function changeTab(){
+        var n=getIndex(this);
+        var oLis=this.parentNode.children;//可以完善一个获得指定标签名的子元素的方法
+        var oDivs=nextSiblings(this.parentNode);
+        for(var i=0;i<oLis.length;i++){
+            oLis[i].className="";
+            odiv[i].className="";
+            this.className="selectli";
+            odiv[n].className="selectdiv";
+        }
+    }
+
+    function nextSiblings(ele){
+        var a=[];
+        var n=ele.nextSibling;
+        while(n){
+            if(n.nodeType===1){
+                a.push(n);
+            }
+            n= n.nextSibling;
+        }
+        return a;
+    }
+    function getIndex(elem){
+        var index=0;
+        var p=elem.previousSibling;
+        while(p){
+            if(p.nodeType==1){
+                index++;
+            }
+            p= p.previousSibling;
+        }
+        return index;
+    }
+//        for(var p=elem.previousSibling;p;p= p.previousSibling){
+//          if(p.nodeType===1){
+//          index++;//则让index累加
+//    }
+//            }
+
+
+
+</script>
+</body>
+</html>

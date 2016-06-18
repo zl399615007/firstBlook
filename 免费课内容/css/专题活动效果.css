@@ -1,0 +1,207 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-size: 16px;
+    display: block;
+    background-color: #ffffff;
+}
+.sales-content{
+    background: url("../img/专题活动图/bj.png");
+    width: 100%;
+    margin-bottom: 20px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: scroll;
+}
+.banner{
+    min-width: 1200px;
+    height: 758px;
+}
+.w{
+    width: 100%;
+}
+.pr{
+    position: relative;
+}
+.banner-top{
+    height: 651px;
+    width: 100%;
+    z-index: 100;
+    background: url("../img/专题活动图/banner.png") center top no-repeat;
+    left: 0;
+    top:0
+
+}
+.pa{
+    position: absolute;
+}
+.top-product{
+    width: 835px;
+    height: 159px;
+    background: url("../img/专题活动图/img/top-pic.png") center 0 no-repeat;
+    left: 50%;
+    margin-left: -417px;
+    top: 415px;
+    z-index: 150;
+}
+.bc{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.miaosha-title{
+    width: 1198px;
+    height: 242px;
+    background: url("../img/专题活动图/miaosha-title.png") center;
+    top: 526px;
+    left: 50%;
+    z-index: 80;
+    margin-left: -599px;
+}
+.drugs{
+    width: 289px;
+    height: 314px;
+    padding: 12px 8px;
+    background: #ffffff;
+}
+.db{
+    display: block;
+}
+.pr{
+    position:relative;
+}
+a {
+    text-decoration: none;
+    outline: none;
+}
+a:-webkit-any-link{
+    color: -webkit-link;
+    cursor: auto;
+}
+.sell-out{
+    width: 305px;
+    height: 338px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+
+}
+.sprite{
+    background:url("../img/专题活动图/Sprite.png") 0 0 no-repeat ;
+}
+address, caption, cite, code, dfn, em, strong, th, var{
+    font-style: normal;
+    font-weight: normal;
+
+}
+.miaosha-icon{
+    background-position: -137px 0px;
+    width: 73px;
+    height: 75px;
+    padding-top: 22px;
+
+}
+.labels {
+    left: 5px;
+    top: 2px;
+    z-index: 50;
+    color: #d30101;
+    font-size: 18px;
+    text-align: center;
+}
+.priceBox {
+    width: 249px;
+    height: 61px;
+    background-position: -363px -196px;
+    padding: 7px 25px 0 15px;
+    font-size: 14px;
+}
+.priceBox p {
+    color: #020202;
+}
+.priceBox .price {
+    color: #fa3200;
+}
+.fl {
+    float: left;
+    display: inline;
+}
+.buy-icon {
+    width: 107px;
+    height: 28px;
+    background-position: 0px -196px;
+    border: none;
+    cursor: pointer;
+}
+ul li{
+    list-style: none;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+
+}
+.drugsBox {
+    width: 945px;
+}
+.drugsBox li {
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.priceBox .price strong {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 3px;
+}
+.fr{
+    float: right;
+}
+.sell-out em {
+    display: inline-block;
+    background-position: 0px -395px;
+    width: 143px;
+    height: 143px;
+    margin-top: 90px;
+}
+.db{
+    display: block;
+}
+
+
+.dazhe-drugs img {
+    width: 441px;
+    height: 250px;
+}
+.dazhe-drugs {
+    width: 442px;
+    height: 319px;
+    padding: 10px;
+    background: #FFFFFF;
+}
+.dazhe-icon {
+    background-position: -252px 0px;
+    width: 73px;
+    height: 78px;
+    padding-top: 33px;
+}
+.labels {
+    left: 5px;
+    top: 2px;
+    z-index: 50;
+    color: #d30101;
+    font-size: 18px;
+    text-align: center;}

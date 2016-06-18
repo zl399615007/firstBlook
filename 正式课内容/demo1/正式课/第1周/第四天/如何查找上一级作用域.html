@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //如何区分当前作用域的上一级作用域？
+    //上级作用域是谁和函数在哪执行的没有关系，只和在哪定义的有关系
+    //
+
+
+
+    var num=13;
+
+    function fn(){
+        var num=100;
+        return function(){
+            console.log(num);
+        }
+    }
+    var f=fn();//首先先把fn函数执行，然后再把fn执行的返回结果(return后面跟的是什么就返回什么，没有return则返回undefined)赋值给f
+    f();
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+
+            width: 500px;
+            background: #cccccc;
+        }
+        #div1 table,#div1 tr,#div1 td{
+            border: 1px solid red;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script>
+    function fn(data){
+        var a=JSON.parse(data);
+        var oTable=document.createElement("table");
+        var oTbody=document.createElement("tbody");
+        oTable.appendChild(oTbody);
+        for(var i=0;i<a.length;i++){
+            var oTr=document.createElement("tr");
+            for(var attr in a[i]){
+                var oTd=document.createElement("td");
+                oTd.innerHTML=a[i][attr];
+                oTr.appendChild(oTd);
+            }
+            oTbody.appendChild(oTr);
+        }
+        div1.appendChild(oTable);
+    };
+
+    document.onclick=function (){
+        var oScript=document.createElement("script");
+        oScript.src="http://old.zhufengpeixun.cn/ajax/jsonphp.php?processFn=fn";
+        document.body.appendChild(oScript);
+    };
+
+
+</script>
+
+
+
+</body>
+</html>

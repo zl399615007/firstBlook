@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+<script>
+//求某数的阶乘
+
+//5!=5*4*3*2*1;
+
+//n=5;
+//n*(n-1)*(n-1-1);
+function fn(n){
+	if(n<1){
+		throw new Error("来了个砸场子的");
+		}
+	if(n==1)return 1;
+	
+	return n*fn(n-1);
+}
+
+fn(5);
+/*5*fn(4);
+5*4*fn(3);
+5*4*3*fn(2);
+5*4*3*2*fn(1);
+5*4*3*2*1*fn(0);
+5*4*3*2*1*0*fn(-1);*/
+
+function fn2(n){
+	var a=[];
+	for(var i=1;i<=n;i++){
+			a.push(i);
+	}
+	//var str=a.join("*");
+	//return eval(str);//eval把字符串解析成JS表达式
+	n=1;
+	while(a.length){
+		n*=a.pop();
+	}
+	
+	return n;
+}
+
+</script>

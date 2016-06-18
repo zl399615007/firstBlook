@@ -1,0 +1,80 @@
+
+function animate(ele,obj,duration,effect,callback) {
+
+
+        var oChange = {};
+        var oBegin = {};
+        var flag = 0;
+        for (var attr in obj) {
+            var target = obj[attr];
+            var begin = animate.getCss(ele, attr);
+            var change = target - begin;
+            if (change) {
+                oChange[attr] = change;
+                oBegin[attr] = begin;
+                flag++;
+            }
+        }
+        if (flag == 0) {
+            return;
+        }
+
+        var times = 0;
+        var interval = 15;
+        clearInterval(ele.timer);
+        function step() {
+            times += interval;
+            if (times < duration) {
+                for (var attr in oChange) {
+                    var begin = oBegin[attr];
+                    var change = oChange[attr];
+                    var val = times / duration * change + begin;
+                    animate.setCss(ele, attr, val);
+                }
+            } else {
+                for (var attr in oChange) {
+                    animate.setCss(ele, attr, obj[attr]);
+                }
+                clearInterval(ele.timer);
+                ele.timer = null;
+                if (typeof callback == "function") {
+                    callback.call(ele);
+                }
+            }
+
+        }
+
+        ele.timer = window.setInterval(step, interval);
+    }
+
+
+
+animate.getCss=function(ele,attr){
+
+    if(window.getComputedStyle){
+        return parseFloat(window.getComputedStyle(ele,null)[attr]);
+    }else {
+        if(attr=="opacity"){
+            var value=ele.currentStyle.filter;
+            var reg=/alpha\(opacity *= *(\d+(?:\.\d+)?)\)/;
+            if(reg.test(value)){
+                return RegExp.$1/100;
+            }else{
+                return 1;
+            }
+        }else{
+            return parseFloat(ele.currentStyle[attr]);
+        }
+    }
+
+};
+
+animate.setCss=function(ele,attr,value){
+    if(attr=="opacity"){
+        ele.style.opacity=value;
+        ele.style.filter="alpha(opacity="+value*100+")";
+    }else{
+        ele.style[attr]=value+"px";
+    }
+};
+

@@ -1,0 +1,145 @@
+ .cnner1{
+    display: block;
+    height: 54px;
+    width: 158px;
+    background: url("../img/网页实例/logo.png") 0 0 no-repeat;
+}
+ .cnner2{
+     height: 50px;
+     width: 120px;
+     background-image: url("../img/网页实例/miyue1.gif");
+     position: absolute;
+     top: 14px;
+     left: 200px;
+ }
+.cnner3{
+    width: 388px;
+    height: 44px;
+    position: absolute;
+    top: 14px;
+    left:380px;
+
+
+}
+ .cnner_int{
+    width: 388px;
+    height: 44px;
+    padding-left: 34px;
+    padding-right: 10px;
+    border: 1px solid #cecece;
+    border-right: none;
+    outline: 0;
+    font-size: 14px;
+}
+ .cnner_btn{
+     display: block;
+     position: absolute;
+     top: 0;
+     right: -130px;
+     width: 85px;
+     height: 48px;
+     background: url("../img/网页实例/sprite_search.png") 0 -108px;
+     border:none;
+ }
+ .cnner_seach{
+     display: block;
+     position: absolute;
+     top: 17px;
+     left: 11px;
+     width: 14px;
+     height: 14px;
+     background: url("../img/网页实例/sprite_search.png") 0 -206px;
+
+
+ }
+ .cnner4_history, .cnner4_collect, .cnner4_upload{
+     position: relative;
+     float: left;
+     display: block;
+ }
+ .cnner4_history_26, .cnner4_collect_26, .cnner4_upload_26{
+     display: inline-block;
+     width: 26px;
+     height: 26px;
+     background: url("../img/网页实例/sprite_common.png");
+ }
+ .quick_txt{
+     margin-top: -2px;
+     text-align: center;
+     display: block;
+ }
+ .cnner4{
+    position: absolute;
+     top: 14px;
+     left: 950px;
+ }
+ .divde{
+     position: absolute;
+     top: 6px;
+     right: 0;
+     width: 1px;
+     height: 26px;
+     overflow: hidden;
+     background: -webkit-linear-gradient(top,rgba(252,252,252,1) 0,rgba(232,232,232,1) 50%,rgba(252,252,252,1) 100%);
+ }
+ .cnner4_QQlogo{
+     padding-right: 0;
+     position: relative;
+     float: left;
+     display: block;
+     width: 43px;
+     height: 43px;
+     background: url("../img/网页实例/default_avatar.png");
+     border-radius: 50%;
+
+ }
+ .cnner5{
+     position: absolute;
+     top:77px;
+     left: 0;
+     width: 100%;
+     height: 3px;
+     line-height: 0;
+     font-size: 0;
+     overflow: hidden;
+     text-align: center;
+     z-index: 1;
+     background-color: #0fa6ea;
+     background: -webkit-linear-gradient(left,rgba(15,166,234,1) 0,rgba(89,204,24,1) 10%,rgba(15,166,234,1) 60%,rgba(15,166,234,1) 100%);
+ }
+.cnner_inner{
+    position: relative;
+    z-index: 2;
+    width: 1240px;
+    margin: 0 auto;
+    display: block;
+}
+.cnner6{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 44px;
+    background-color: rgba(256,256,256,.8);
+    display: block;
+    padding-top: 2px;
+}
+.cnner_inner ul{
+    border-left: none;
+    float: left;
+    height: 16px;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #c7c6c0;
+    margin: 14px 0;
+    padding: 0 4px;
+    list-style: none;
+}
+.cnner_inner li{
+    float: left;
+    height: 45px;
+    line-height: 45px;
+    margin-top: -14px;
+    _margin-bottom: -14px;
+    zoom: 1;
+    vertical-align: top;
+    padding: 4px;
+}

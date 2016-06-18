@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #outer {
+            width: 300px;
+            height: 200px;
+            /*overflow: hidden;*/
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+
+        }
+
+        #inner {
+            width: 1200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+        }
+
+
+
+
+        #btn {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+
+        }
+
+        #btn span {
+            display: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: orange;
+            text-align: center;
+            margin: 5px;
+            cursor: pointer;
+            line-height: 30px;
+            -webkit-user-select: none;
+            color: #ffffff;
+
+        }
+
+        #inner li:nth-child(1) {
+            background: pink;
+        }
+
+        #inner li:nth-child(2) {
+            transform:rotate(180deg);
+            background: lightblue;
+        }
+
+        #inner li:nth-child(3) {
+            background: orchid;
+        }
+
+        #inner li:nth-child(4){
+            background: saddlebrown;
+        }
+        #btn span.cur{
+            background: black;
+        }
+#inner li{
+    width: 100px;
+    height: 100px;
+    /*float: left;*/
+    font-size: 30px;
+    color: #ffffff;
+    list-style: none;
+    margin: 20px;
+}
+        .li1 {
+            width: 100px;
+            height: 100px;
+            /*float: left;*/
+            font-size: 30px;
+            color: #ffffff;
+            list-style: none;
+            margin: 20px;
+            box-shadow: 0 0 0 30px transparent;
+
+        }
+        #inner li:nth-child(1):hover{
+            box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
+
+           // box-shadow:0 0 0 0 rgba(255,255,255,0.5) ;
+            transition: box-shadow 1s linear;
+        }
+
+    </style>
+</head>
+<body>
+<div id="outer">
+    <ul id="inner">
+        <li class="li1">1111</li>
+        <li class="li2">2222</li>
+        <li class="li3">3333</li>
+        <li class="li4">4444
+        </li>
+    </ul>
+</div>
+<div id="btn">
+    <span class="cur">1</span>
+    <span class="">2</span>
+    <span class="">3</span>
+    <span class="">4</span>
+
+
+
+    <script>
+    //transition过度动画：在一定时间内，css属性值由一个值向另一个值过度
+
+    </script>
+</div>
+</body>
+</html>

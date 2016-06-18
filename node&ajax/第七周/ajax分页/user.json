@@ -1,0 +1,19 @@
+{
+  "list":[
+    {"username":"小一","age":"18","sex":"男","class":"一年级"},
+    {"username":"小二","age":"23","sex":"男","class":"一年级"},
+    {"username":"小三","age":"34","sex":"男","class":"一年级"},
+    {"username":"小四","age":"23","sex":"女","class":"一年级"},
+    {"username":"小五","age":"22","sex":"男","class":"一年级"},
+    {"username":"小六","age":"34","sex":"女","class":"一年级"},
+    {"username":"小七","age":"65","sex":"女","class":"一年级"},
+    {"username":"小八","age":"21","sex":"男","class":"二年级"},
+    {"username":"小九","age":"34","sex":"女","class":"二年级"},
+    {"username":"小十","age":"12","sex":"男","class":"二年级"},
+    {"username":"萧十一郎","age":"33","sex":"女","class":"二年级"},
+    {"username":"萧十二郎","age":"22","sex":"男","class":"二年级"},
+    {"username":"萧十三郎","age":"56","sex":"女","class":"二年级"},
+    {"username":"潇十四郎","age":"23","sex":"男","class":"二年级"},
+    {"username":"萧十五郎","age":"11","sex":"女","class":"二年级"}
+  ]
+}

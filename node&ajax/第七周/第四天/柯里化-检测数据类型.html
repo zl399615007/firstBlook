@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ct=function (){
+        var isType=function (type){
+            return function (value){
+                var reg=new RegExp("\\[object "+type+"\\]","i"),res={}.toString.call(value);
+                return reg.test(res);
+            }
+        };
+        var obj={
+            isNum:"number",
+            isStr:"string",
+            isBoo:"boolean",
+            isNull:"null",
+            isObj:"object",
+            isFun:"function",
+            isReg:"regexp"
+        },funObj={};
+        for(var key in obj){
+            funObj[key]=isType(obj[key]);
+        }
+
+        return funObj;
+    }();
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img{ display:block; margin:10px; border:none; width:300px; height:300px;}
+    </style>
+</head>
+<body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466924.jpg" src="../第三天/default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466925.jpg" src="../第三天/default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466926.jpg" src="../第三天/default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466927.jpg" src="../第三天/default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466928.jpg" src="../第三天/default.gif">
+<img src="../第三天/default.gif">
+</body>
+</html>
+<script>
+    function offset(ele){
+        var l=ele.offsetLeft;
+        var t=ele.offsetTop;
+        var p=ele.offsetParent;
+        while(p){
+            if(window.navigator.userAgent.indexOf("MSIE 8")==-1){
+
+                t+= p.offsetTop+ p.clientTop;
+
+            }else{
+                l+= p.offsetLeft;
+                t+= p.offsetTop
+            }
+            p= p.offsetParent;//在if判断外面
+        }
+        return {l:l,t:t}
+    }
+    var oImg=document.images[0];
+    oImg.t=offset(oImg).t+oImg.offsetHeight;
+    window.onscroll=function(){
+        var h=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight);
+        if(h>oImg.t){
+            var realSrc=oImg.getAttribute("realSrc")+"?"+Math.random();
+
+            oImg.src="../../../o_loading.gif";//在一个网址中，写在问号后边的是查询字符串，一般用来诶后台服务器传值
+            var imgTemp=new Image;
+            imgTemp.src=realSrc;
+            imgTemp.onload=function(){
+                oImg.src=this.src;
+            }
+        }
+    }
+
+
+</script>

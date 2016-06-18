@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function add(){
+        var oDiv=document.createElement("div");
+        var oText=document.createTextNode("哈哈哈哈哈");
+        oDiv.appendChild(oText);
+        document.body.appendChild(oDiv);
+        var oLis=document.getElementsByTagName("div");
+        oText.nodeValue=oLis.length+"个";
+        oDiv.onclick=function(e){
+            var e=e||event;
+            if(e.stopPropagation){
+                e.stopPropagation();
+            }else{
+                e.cancelBubble=true;
+            }
+            document.body.removeChild(this);
+        }
+    }
+    document.onclick=add;
+
+
+
+
+</script>
+
+</body>
+</html>

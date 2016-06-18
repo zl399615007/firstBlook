@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[1,1,2,1,3,4,3,2,5,1],obj={};
+//    for(var i=0;i<ary.length;i++){
+//        var cur=ary[i];//数组的每一项
+//        if(obj[cur]==cur){//先去判断这个对象是否有数组的这一项
+//            ary.splice(i,1);//把重复这一项删除，发生了数组的塌陷
+//            i--;
+//            continue;
+//        }
+//        obj[cur]=cur;
+//    }
+//    obj=null;//清空obj占用的内存
+
+
+
+
+//    for(var i=0;i<ary.length;i++){
+//        var cur=ary[i];
+//        for(var j=i+1;j<ary.length-1;j++){
+//            if(cur==ary[j]){
+//                ary.splice(j,1);
+//                j--;
+//
+//            }
+//        }
+//    }
+//    console.log(ary);
+
+    //如果遇到重复项，把重复这项的值变成最后这项的值
+    for(var i=0;i<ary.length;i++){
+        var cur=ary[i];
+        console.log(typeof (cur));
+//        if(obj[cur]==cur){
+//            ary[i]=ary[ary.length-1];
+//            ary.length--;
+//            i--;
+//            continue;
+//        }
+//        obj[cur]=cur;
+
+    }
+  //  console.log(ary);
+</script>
+</body>
+</html>

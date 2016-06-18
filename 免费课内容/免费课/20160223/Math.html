@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //Math.floor  向下取整
+    //Math.ceil   向上取整
+    //Math.round  四舍五入
+    //Math.abs    取绝对值
+    //Math.random  获取0-1之间的随机数，但不包含1
+    //Math.round(Math.random()*(m-n)+n);  获取【n~m）之间的随机整数
+    //Math.min（）   取最小数
+    //Math.max()    取最大数
+
+    //随机的获取2~62之间的任意的四个整数
+    var ary=[],obj={};
+    for(var i=0;i<4;i++){
+        var random=Math.round(Math.random()*60+2);
+        ary.push(random);
+        //方法1
+        // var cur=ary[i];
+//        if(obj[cur]==cur){
+//                ary.splice(i,1);
+//            i--;
+//        continue;
+//    }
+        //方法2
+//        if(ary.indexOf(random)==-1){
+//            ary.push(random);
+//            continue;
+//        }
+//        i--;
+        //方法3
+//        if(ary.indexOf(random)>-1){
+//            i--;
+//            continue;
+//        }
+//        ary.push(random);
+   }
+    console.log(ary);
+
+    //while循环替换for循环 （while循环适合循环次数不固定的循环）
+    var ary=[];
+    while(ary.length<4){
+        var random=Math.round(Math.random()*60+2);
+        if(ary.indexOf(random)==-1){
+            ary.push(random);
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #outer {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        #inner {
+            width: 1200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+        }
+
+        #inner li {
+            width: 300px;
+            height: 200px;
+            float: left;
+            font-size: 30px;
+            color: #ffffff;
+            list-style: none;
+
+        }
+
+        #btn {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+
+        }
+
+        #btn span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: orange;
+            text-align: center;
+            margin: 5px;
+            cursor: pointer;
+            line-height: 30px;
+            -webkit-user-select: none;
+
+        }
+
+        #inner li:nth-child(1) {
+            background: pink;
+        }
+
+        #inner li:nth-child(2) {
+            background: lightblue;
+        }
+
+        #inner li:nth-child(3) {
+            background: orchid;
+        }
+
+        #inner li:nth-child(4){
+            background: saddlebrown;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <ul id="inner">
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444
+        </li>
+    </ul>
+</div>
+<div id="btn">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+
+    <script>
+        var inner = document.getElementById("inner");
+        var oLis = inner.getElementsByTagName("li");
+        var oBtn=document.getElementById("btn");
+        var oSpan=oBtn.getElementsByTagName("span");
+        //方向问题：起始位置>终点位置，往左运动
+        //      起始位置<终点位置，往右运动
+        function move(ele, target) {
+            clearInterval(ele.timer);
+            function step() {
+                if (ele.offsetLeft > target) {
+                    ele.style.left = ele.offsetLeft - 10 + "px";
+                    if(ele.offsetLeft<=target){
+                        ele.style.left=target+"px";
+                        clearInterval(ele.timer);
+                    }
+                } else if (ele.offsetLeft < target) {
+                    ele.style.left = ele.offsetLeft + 10 + "px";
+                    if(ele.offsetLeft>=target){
+                        ele.style.left=target+"px";
+                        clearInterval(ele.timer);
+                    }
+                }else{
+                    clearInterval(ele.timer);
+                }
+            }
+             ele.timer=window.setInterval(step, 10)
+            };
+
+        for(var i=0;i<oSpan.length;i++){
+            oSpan[i].index=i;
+            oSpan[i].onclick=function(){
+                move(inner,-300*this.index)
+            }
+        }
+
+        //方向的问题
+        //动画积累的问题
+        //边界问题
+
+    </script>
+</div>
+</body>
+</html>

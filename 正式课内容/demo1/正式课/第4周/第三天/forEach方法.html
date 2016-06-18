@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+ //   var a=[1,2,4,1,2,3,54,5];
+ //   a.forEach(function(val,index,ary){
+        //当遍历此数组的时候，会自动的执行这个回调方法：给回调方法传三个参数
+        //三个参数第一个是当次遍历到的数组项
+        //第二个参数是当前遍历到的数组项在原数组中的索引位置
+        //第三个参数是原数组
+    //forEach有两个参数，第一个是回调方法，当forEach执行的时候开始遍历数组，每遍历到一个数组项则执行一次这个回调方法，并且在执行这个回调方法的时候，主动传三个参数给回调方法，第一个参数是当前遍历到的数组项，第二项是当前数组项在这个数组里的索引，第三项是被遍历的数组本身
+   //第二个参数是可选的，是当第一个参数执行的时候指定的上下文
+
+
+  //  },div1);
+    //forEach还可以有第二个参数（可选），第二个参数是第一个参数（函数）的上下文
+
+    var a=[1,2,4,1,2,3,54,5];
+    Array.prototype.myForEach=function(callback,context){
+        for(var i=0;i<this.length;i++){
+            callback.call(context,this[i],i,this)
+        }
+
+    };
+
+a.myForEach(function(value,index,input){
+    console.log(value)
+})
+
+</script>
+</body>
+</html>

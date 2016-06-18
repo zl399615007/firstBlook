@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=640px, user-scalable=no">
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width: 640px;
+            height: 960px;
+            overflow: hidden;
+            position: relative;
+            left: 0;
+            top:0;
+
+        }
+        #list{
+
+        }
+        #list li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0;
+            left: 0;
+            font-size: 100px;
+            color: #FFFFFF;
+            display: none;
+            z-index: 5;
+        }
+        #list>li.zIndex{
+            z-index: 6;
+        }
+        #list>li:nth-of-type(1){
+            background: darkmagenta;
+            display: block;
+        }
+        #list>li:nth-of-type(2){
+            background: darkgoldenrod;
+        }
+        #list>li:nth-of-type(3){
+            background: darkcyan;
+        }
+        #list>li:nth-of-type(4){
+            background: darkgreen;
+        }
+        #list>li:nth-of-type(5){
+            background: darkred;
+        }
+        #list>li:nth-of-type(6){
+            background: deepskyblue;
+        }
+        li div{
+            height: 300px;
+            width: 300px;
+            background: red;
+            z-index: 100;
+        }
+
+
+
+
+    </style>
+
+
+    <script src="jquery-1.12.1.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+<div id="main">
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

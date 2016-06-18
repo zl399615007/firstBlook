@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #outer{
+            height: 500px;
+            width: 600px;
+            background: #63c;
+        }
+        #middle{
+            padding: 30px;
+            height: 400px;
+            width: 400px;
+            background: #00007F;
+        }
+        #inner{
+            width: 300px;
+            height: 300px;
+            padding: 30px;
+            background: #96c;
+        }
+        #p1{
+            background: yellow;
+            height: 200px;
+            width: 200px;
+        }
+        #span1{
+            display: block;
+            height: 100px;
+            width: 100px;
+            background: salmon;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">outer<br>
+    <div id="middle">middle<br>
+        <div id="inner">inner<br>
+            <p id="p1">ppppppppppppp<br>
+                <span id="span1">span</span>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    function fn(e){
+        alert(this.innerHTML);
+    };
+    var eles=document.getElementsByTagName("*");
+    for(var i=0;i<eles.length;i++){
+        //eles.item(i).onclick=fn
+        //这表示冒泡阶段（从里往外）处理事件上绑定的方法
+        eles[i].addEventListener("click",fn,false);
+        //这表示在捕获阶段（从外往里）处理事件上绑定的方法
+        eles[i].addEventListener("click",fn,true);
+    }
+
+    //事件和事件上绑定的处理方法是两回事
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //50万项的数据，随机抽取1000项
+//    var a=[];
+//        for(var i=0;i<100;i++){
+//            a.push(i);
+//        }
+//    var aNew=[];
+//    for(var i=0;i<10;i++){
+////        aNew.concat(a.splice(Math.floor(Math.random()*a.length),1));
+//   var random=Math.floor(Math.random()* a.length);
+//        aNew=aNew.concat(a.splice(random,1));//根据这个索引吧这个数从原数组抽出来
+//       // aNew.push(a.splice(random,1));用push会使aNew是二维数组
+//       //aNew.push(a.splice(random,1)[0]);这样可以，但没有上边的简洁
+//    }
+//    console.log(aNew);
+//
+//    //性能优化
+//    var a2=[];
+//    for(var i=0;i<10;i++){
+//        var random=Math.floor(Math.random()* a.length);
+//        //var item=a[random];
+//        a2.push(a[random]);  //先把抽到的这一项保存下来
+//        a[random]=a[a.length-1]; //用最后一项吧已经出栈的那一项覆盖
+//        a.length--;            //再让数组的长度减小一个，这样就达到了删除数组最后一项的效果
+//        //a2.push(item);
+//
+//    }
+
+
+    //随机的从大于7项的数组中取出7项内容，并放入到数组中
+    var ary=[1,4,3,3,5,7,9,46,64];
+    //1.只能根据索引（索引是个随机数）-->索引的范围（0-ary.length-1)
+    //2.从索引0-ary.length-1
+    function getRandom(ary){
+        var a=[];
+       //
+
+       while(a.length<7){
+            var nIndex=Math.floor(Math.random()*ary.length);//随机获得数组里的某个索引
+           var cur=ary[nIndex];//通过索引从数组取出一项内容
+           if(a.indexOf(cur)==-1){
+               a[a.length]=cur;
+           }
+        }
+        return a;
+
+    }
+    console.log(getRandom(ary));
+
+
+
+</script>
+
+</body>
+</html>

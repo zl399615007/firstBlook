@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        .tabbedpannels {
+            overflow: hidden;
+            width: 600px;
+            margin: 40px auto;
+
+        }
+
+        .tabbedpannels ul.tabGroup {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabbedpannels li.tab {
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            float: left;
+            background: lightblue;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .tabbedpannels div.content {
+            clear: both;
+            height: 200px;
+            width: 600px;
+            background: #cccccc;
+            display: none;
+        }
+
+        .tabbedpannels div.content.selectedContent {
+            display: block;
+            background: darkgoldenrod;
+        }
+
+        .tabbedpannels li.tab.selectedTab {
+            background: darkgoldenrod;
+            font-weight: bold;
+        }
+
+        .promoted {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="tabbedpannels">
+    <ul class="tabGroup" >
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+        <!--<ul>-->
+        <!--<li>js</li>-->
+        <!--<li>html</li>-->
+        <!--</ul>-->
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab  promoted">2</li>
+        <li class="tab ">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+</body>
+<script src="../../js/Dom.js"></script>
+
+<script>
+var oLis=Dom.getElesByClass("tab");
+//var strEvent="onclick";
+    for(var i=0;i<oLis.length;i++){
+//        ~(function (i) {
+//            oLis[i][strEvent]=function(){
+//                changeTab(i);}//changeTab在这里被调用，方法带括号，原因是要传参数
+//        })(i)原来的写法，需要优化
+        oLis[i].onclick=changeTab;//这里的changeTab不带括号，表示只是事件绑定
+    }
+function changeTab(){
+    //索引不用从外边传进来，而是在这里自动计算出来
+//    var index=0;
+//    var previous=this.previousSibling;
+//    while(previous){
+//        if(previous.nodeType===1){
+//            index++;
+//        }
+//        previous=previous.previousSibling;
+//    }
+//    alert(index)
+    var n=Dom.getIndex(this);
+    //this.className="tab selectedTab";
+    Dom.addClass(this,"selectedTab");
+    var siblings=Dom.siblings(this);
+
+    for(var i=0;i<siblings.length;i++){
+        // siblings[i].className="tab";
+         Dom.removeClass(siblings[i],"selectedTab");
+
+    }
+    //var contents=this.parentNode.nextElementSibling.children;
+    var contents=Dom.children(Dom.next(this.parentNode),"div");
+    for(var i=0;i<contents.length;i++){
+        //contents[i].className="content";
+        Dom.removeClass(contents[i],"selectedContent")
+    }
+    //contents[n].className="content selectedContent"
+    Dom.addClass(contents[n],"selectedContent");
+
+}
+
+
+</script>
+</html>

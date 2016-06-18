@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+//    var ary=[1,2,13,2,1,2,32,13];
+//    for(var i=0;i<ary.length-1;i++){
+//        var cur=ary[i];
+//        for(var j=i+1;j<ary.length;j++){
+//            if(cur==ary[j]){
+//                ary.splice(j,1);
+//                j--;
+//            }
+//        }
+//    }
+//    console.log(ary);
+
+
+ //   一个for循环
+        var ary=[1,2,13,2,1,2,32,13],obj={};
+        for(var i=0;i<ary.length;i++){
+            var cur=ary[i];
+
+            if(obj[cur]==cur){
+                ary.splice(i,1);
+                i--;
+                continue;
+            }
+            obj[cur]=cur;
+        }
+    obj=null;
+    console.log(ary);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

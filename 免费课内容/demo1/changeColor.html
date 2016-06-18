@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="">
+    <meta charset="IBM855.">
+    <title>for循环实现5种变色</title>
+    <style type="text/css">
+        body,ul,li{
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+        ul,li{
+            list-style: none;
+        }
+        #box{
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px dashed blue;
+            border-radius:10px;
+        }
+        #box li{
+            height: 35px;
+            width: auto;
+        }
+        .bg1{
+            background-color: bisque;
+        }
+        .bg2{
+            background-color: aqua;
+        }
+        .bg3{
+            background-color: red;
+        }
+        .bg4{
+            background-color: blueviolet;
+        }
+        .bg5{
+            background-color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li>
+            习近平出席田径世锦赛开幕式 会见奥委会主席
+        </li>
+        <li>
+            天安门广场今日举行“全要素”阅兵预演(组图)
+        </li>
+        <li>
+            婚外恋网站被黑引恐慌 我们在网上“裸奔”？
+        </li>
+        <li>
+            习近平出席田径世锦赛开幕式 会见奥委会主席
+        </li>
+        <li>
+            天安门广场今日举行“全要素”阅兵预演(组图)
+        </li>
+        <li>
+            婚外恋网站被黑引恐慌 我们在网上“裸奔”？
+        </li>
+        <li>
+            习近平出席田径世锦赛开幕式 会见奥委会主席
+        </li>
+        <li>
+            天安门广场今日举行“全要素”阅兵预演(组图)
+        </li>
+        <li>
+            婚外恋网站被黑引恐慌 我们在网上“裸奔”？
+        </li>
+        <li>
+            习近平出席田径世锦赛开幕式 会见奥委会主席
+        </li>
+        <li>
+            天安门广场今日举行“全要素”阅兵预演(组图)
+        </li>
+        <li>
+            婚外恋网站被黑引恐慌 我们在网上“裸奔”？
+        </li>
+    </ul>
+    <script type="text/javascript">
+        var oui=document.getElementById("box")
+        var oli=oui.getElementsByTagName("li")
+        for(var i=0;i<oli.length;i++){
+            var li=oli[i];
+            if(i%5==0){
+                li.className="bg1"
+            }else if(i%5==1){
+                li.className="bg2"
+            }else if(i%5==2) {
+                li.className = "bg3"
+            }else if(i%5==3) {
+                li.className = "bg4"
+            }else{li.className="bg5"}
+
+        }
+
+    </script>
+</body>
+</html>

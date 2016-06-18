@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颠倒字符串</title>
+</head>
+<body>
+<script>
+    function reversString(str) {
+        var mid=(str.length%2==0);
+        if(!mid){
+            mid=Math.round(str.length/2);
+            var arry1=str.substr(0,mid-1);
+            var arry2=str.substr(mid);
+            var arry3=str.charAt(mid-1);
+            var arry=arry2.concat(arry3,arry1);
+            return arry;
+        }else{
+            mid=str.charAt(str.length/2);
+            var ary= str.split(mid);
+            ary=ary.reverse();
+            ary=ary.join("");
+            ary=mid+ary;
+            return ary;
+        }
+    }
+    var str="abcdefghijklmno";
+    console.log(reversString(str))
+
+
+</script>
+</body>
+</html>

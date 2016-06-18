@@ -1,0 +1,42 @@
+url的完整结构：<scheme>://username:password@<hostname>:<port>/<pathname>?<seach>#<hash>
+
+如果想要成功访问，url最基本的构成：<scheme>://<hostname>:<port>
+1、什么是跨域请求
+在当前页面内，访问的请求与当前宿主域名的基本结构（方案、域名、端口）不同，那么这个请求，就是跨域请求。
+
+2、什么是同源策略？
+同源策略是浏览器厂商为了安全，强制实施的一种安全限制（不允许跨域访问）
+
+3、可以引入其他站点资源的dom元素的特点
+一、iframe的特点
+可以成功引入其他站点资源，但是由于同源策略的限制，导致无法操作iframe里头的跨域内容。
+二、img的特点
+会把加载到的内容强制转换成图片来显示，如果无法转换成图片，则显示加载失败。由于这个特点，局限了img元素只能用来加载图片。img可以统计pv/uv，通过http首部中的referer来记录统计
+三、script的特点
+会把加载到的内容，当成脚本来执行。
+四、link的特点
+会把加载到的内容，当成样式表来执行。
+
+
+什么是jsonp？
+jsonp是利用script标签来完成的跨域
+1、必须提前全局定义一个函数func
+2、把func和server定义好的参数名一起拼接到url的后面 http://localhost:8080?val=func
+3、server返回func(/*JSON DATA*/)
+4、浏览器收到数据之后，就开始把数据当成js来执行，也就是会执行func方法。
+5、执行完func方法，整个逻辑完成。
+
+为什么叫jsonp?
+因为server返回的格式是function(/*json data*/)=>也就是在json data前面加了一个方法名。=>json padding a functionName=>json padding=>jsonp
+
+html中所有的href、src都是通过get方法去请求的
+jsonp的注意事项：
+1、只能是http的get方法去请求server。（get系有的特点jsonp全有）
+2、不安全
+3、jsonp并不是ajax
+
+另一种跨域方式：
+CROS 跨域资源共享
+
+
+

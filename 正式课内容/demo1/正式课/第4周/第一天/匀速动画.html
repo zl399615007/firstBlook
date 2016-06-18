@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+
+
+    </style>
+</head><div id="div1"></div>ad>
+<body>
+
+<script src="../../js/common.js"></script>
+<script>
+    //由当前的位置匀速的运动的运动到窗口的右端
+    //起始位置和目标位置都是距离参照物的偏移量
+    var oDiv=document.getElementById("div1");
+    function move(){
+        var begin=oDiv.offsetLeft;/*起始位置*/
+        var target= c.win("clientWidth")-oDiv.offsetWidth;
+        if(oDiv.offsetLeft+10>target){
+            oDiv.style.left=target+"px";
+            window.clearTimeout(timer);
+            return;
+        }
+       oDiv.style.left=oDiv.offsetLeft+10+"px";
+    }
+   var timer=window.setInterval(move,15);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script>
+    //原生ready事件（DOM树加载完后执行）
+    //onload事件文档全部加载完后执行
+    (function (){
+        var isReady=false;
+        if(window.addEventListener){
+            return function (callback){
+                if(isReady){
+                    callback();
+                    return;
+                }
+                window.addEventListener('DOMContentLoaded',function (){
+                    isReady=true;
+                    callback();
+                },false);
+            }
+        }
+        return function (callback){
+            var complete=function (){
+                callback();
+            }
+            }
+
+            document.attachEvent('onreadystatechange',function (){
+                if(document.readyState==='interactive'||document.readyState=='complete'){
+                    complete();
+                }
+            });
+        setTimeout()
+
+    })()
+
+</script>
+</body>
+</html>

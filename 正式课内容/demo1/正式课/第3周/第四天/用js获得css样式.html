@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height: 100px;
+            margin: 100px;
+            background: red;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">div1</div>
+<script>
+  //  div1.style.height//只能获得行内样式
+    //如果想获得一个元素的任意样式，用getComputedStyle,IE678不支持
+    //getComputedStyle的第二个参数是指获得伪元素样式
+
+   // var oStyle=getComputedStyle(div1,null);
+   // console.log(oStyle);
+  //  var height=getComputedStyle(div1,null)["height"];//返回的结果不是数字，是带单位字符
+
+   // oStyle.width//是一个具体的带单位的结果，虽然我们没有在css里设置width的值
+
+    //IE中获得样式集合的方式是通过currentStyle的属性
+    //currentStyle没法获得伪元素的样式
+
+  //方法1
+    function getCSS(ele,attr){
+        if(typeof  getComputedStyle =="function"){
+            return getComputedStyle(ele)[attr]
+        }else{
+            return ele.currentStyle[attr];//IE的属性
+        }
+
+
+    }
+
+  //方法2
+    function getCss(ele,attr){
+        if(window.getComputedStyle){//为什么要加window：一个变量如果不存在，直接做读操作，会报错，以属性的方式来做读操作，则没有问题
+            return getComputedStyle(ele)[attr]
+        }else{
+            return ele.currentStyle[attr]
+        }
+
+    }
+
+  //所有的全局方法或全局的内置对象，都是window的属性
+    //Math/RegExp
+    //以上两个是和window平级的，和window一样，属于global下定义
+
+
+    //方法3
+    function getCss(ele,attr){
+        try{
+            return window.getComputedStyle(ele)[attr];
+        }catch(e){
+            return ele.currentStyle[attr];
+        }
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

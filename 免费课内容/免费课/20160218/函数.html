@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+<body>
+<script type="text/javascript">
+//    function sum() {//任意有效数字求和
+//        var total = null;
+//        for (var i = 0; i < arguments.length; i++) {
+//            if (!isNaN(arguments[i])) {
+//                total += Number(arguments[i]);
+//
+//            }
+//        }
+//        return total;
+//        //三元运算符
+//        //isNaN(arguments[i])?null:total+=Number(arguments[i]);
+//
+//    }
+//    var total = console.log(sum(1, "2","!", 4));
+
+
+    //    function bevelEdge(a,b){//勾股定理
+    //Math.sqrt(a*a+b*b);//开平方
+    //       return Math.sqrt(Math.pow(a,2)+Math.pow(b,2));//求a或b的n次幂
+    //return有两个意思：停止函数的执行；如果后面还有值，则把这个值返回到函数外边
+    //return只能用在函数里
+    //  }
+
+    //并非所有的函数都要返回值，完成某一组功能和返回值是两码事
+    //参数和返回值是这个函数和外界交互的接口（途径）
+
+
+    // var i=1;
+    //   i++;//先把i返回，然后i在累加1，并且把累加的结果再赋给i
+    //   ++i;//i先累加1并且把结果返回，然后再把结果赋值给i
+
+    //函数的参数集合：arguments 是内置对象，无论是否传参数，arguments一定存在。
+    /*
+     *callee:指向方法本身
+     * length:传的实参个数
+     */
+    //             this:运行的主体，专业术语叫上下文（context),就是指当前执行这个函数的主体对象
+    //凡是全局函数在执行（就前边没调用它的主体），则这个函数里的this指向全局对象window
+
+    //window,document,document.documentElement(HTML),document.body(body)
+
+
+    //    function sum() {//求和
+    //        //arguments.length;//当次运行传进来的实参个数，参数也相当于是外界和方法的衔接
+    //        var sum = null;
+    //        for (var i = 0; i < arguments.length; i++) {
+    //            sum += arguments[i];
+    //        }
+    //        return sum;
+    //
+    //    }
+    //    console.log(sum(1, 3, 1, 3, 4, 4, 5, 6, 4, 3, 33543, 2345, 3));
+
+    //对象直接量：直接把一个值再给一个变量，则这个变量的类型由这个值决定了，就是直接赋值的方法。
+    //function也是对象类型的，但是比较特殊，因此单独的独立成特殊类型。
+    //只要写在script标签下面的，都表示是在全局环境下（window)，全局的作用域
+    //1.一个功能需要多次使用，复用的时候，我们可以吧这个功能单独写成一个方法
+    //作用：1.可以防止代码的重复   2.在下次使用这个功能的时候，不需要重新书写，只需要执行一下即可   3.可以产生私有变量   4.可以构建闭包的机制
+    //方法的定义和执行是两个过程
+
+
+    //方法的定义的步骤：
+    //1.开辟一个内存空间（假设引用地址是fff000)，将方法体里的内容以字符串的形式保存在这个内存空间里
+    //2.将引用地址（fff000）赋给函数名sum，这样的话sum就代表了整个方法。
+
+    //方法运行的步骤：
+    //1.方法运行的时候会重新开辟一个私有的空间，并且将方法体的字符串变成相应的js语句，每运行一次方法都会开辟一个私有的空间（私有作用域，也称为闭包），这个方法里通过var声明的变量，称为私有变量之一。
+    //方法体里的私有变量在全局环境下是访问不到的
+    //每个方法都自带关键词return，作用是将内部的值返回
+    //1.如果没写return或者return后面没跟任何值，则方法的返回值就是undefined
+    //2.遇到return，这个方法就无条件终止，后面的语句都不在执行
+    //3.并非是所有的方法都需要有返回值
+
+
+</script>
+</body>
+</html>

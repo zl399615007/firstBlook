@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        #div1 {
+            width: 800px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid aqua;
+            text-align: center;
+            padding: 0 10px;
+            background: -webkit-linear-gradient(top left, #c7c6c0, #0fa6ea, #daeeff);
+            margin: 5px auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    var oDiv=document.getElementById("div1");
+    oDiv.innerHTML="距离开课："+getspantime();
+    window.setInterval(function(){
+        oDiv.innerHTML="距离开课："+getspantime();
+    },1000)
+    function getspantime(){
+        var tarTime = new Date("2016/3/17 9:59:59");
+        var nowTime = new Date();
+        var tarSpan = tarTime.getTime();
+        var nowSpan = nowTime.getTime();
+        var diffTime = tarSpan - nowSpan;
+        var day=Math.floor(diffTime/(1000*60*60*24));
+        var dayMs=day*1000*60*60*24;
+        var spanMS=diffTime-dayMs;
+        var hour = Math.floor(spanMS / (1000 * 60 * 60));
+        var hourMs=hour*1000*60*60;
+        var spanMs1=spanMS-hourMs;
+        var minute=Math.floor(spanMs1/(1000*60));
+        var minuteMs=minute*1000*60;
+        var spanMs2=spanMs1-minuteMs;
+        var second=Math.floor(spanMs2/1000);
+        return zero(day)+"天"+zero(hour)+"时"+zero(minute)+"分"+zero(second)+"秒"
+    }
+
+    function zero(value) {
+        return value < 10 ? "0" + value : value;
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

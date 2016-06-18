@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width: 300px;
+            height: 150px;
+            background: red;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="inner"></div>
+<div id="div2"></div>
+<script>
+    //偏移量默认是距离浏览器左或上的距离,偏移量和DOM层级关系没有必然联系
+    //offsetParent->表示偏移量参照物的属性（这个属性和parentNode没有必然联系），标准流默认情况下，所有的元素offsetParent都是body
+    //参照物：默认是相对于浏览器产生的
+    //什么时候会偏移参照物会变化：如果祖先元素设置了定位（relative absolute fixed）,
+    //什么情况下会产生偏移:标准流，浮动，设置了margin
+    //偏移量是包括margin但是不包括border
+//    div1.offsetLeft
+//    div1.offsetTop
+//    div2.offsetTop
+//    div2.offsetLeft
+
+    //封装通用的获得某元素距离文档左和上的偏移量的方法
+    function offset(ele){
+    var l=ele.offsetLeft;
+    var t=ele.offsetTop;
+    var p=ele.offsetParent;
+    while(p){//判断ele是否有offsetParent(偏移参照物)
+        if(window.navigator.userAgent.indexOf("MSIE 8")==-1){
+            //window.navigator.userAgent 这个叫用户代理字符串，保存了浏览器厂商，版本号，内核等信息。
+        l+= p.offsetLeft+ p.clientLeft;//js中只有直接获得左边框和上边框宽度的属性，没有获得下边框和右边框宽度的属性
+        t+= p.offsetTop+ p.clientTop;
+
+        }else{
+            l+= p.offsetLeft;
+            t+= p.offsetTop
+        }
+        p= p.offsetParent;//在if判断外面
+    }
+      //1  return{l:l,t:t};
+      //2  return{left:l,top:t}
+        var obj={};
+        obj.left=l;obj.top=t;
+        return obj;
+    }
+</script>
+</body>
+</html>

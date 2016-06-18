@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul class="b c a d ">
+    <li class="fgj dg select a c b cd" id="li1">1</li>
+    <li class="fgj dg a b c">2</li>
+    <li class="fgj select a b c">3</li>
+    <li class="fgj dg  b c">4</li>
+    <li class="fgj select a b d c">5</li>
+    <li class="fgj dg a bc">6</li>
+    <li class="fgj dg a b c d ">7</li>
+    <li class="fgj dg a b-select-cd c">8</li>
+</ul>
+<script>
+    var uls=document.getElementsByTagName("ul")[0];
+    console.log(getElesClass("a c fgj",uls));
+    function getElesClass(str,content){
+        content=content||document;
+        if(typeof str!="string"){
+           throw new Error("第一个参数非法")
+        }
+        if(!(content&&(content.nodeType==1||content.nodeType==9))){
+            throw new Error("第二个参数非法")
+        }
+        if(content.getElementsByClassName){
+            return content.getElementsByClassName(str);
+        }
+
+        str=str.replace(/^ +| $/g,"");
+        var aclass=str.split(/ +/);
+        var eles=content.getElementsByTagName("*");
+        var a=[];
+        for(var i=0;i<aclass.length;i++){
+            var reg=new RegExp("(?:^| )"+aclass[i]+"(?: |$)");
+            for(var j=0;j<eles.length;j++){
+                if(reg.test(eles[j].className)){
+                    a.push(eles[j]);
+                }
+            }
+            eles=a;
+        }
+        return eles;
+    };
+//    function addClass(ele,str){
+//       var reg=new RegExp("(^| )"+str+"( |$)");
+//        if(!reg.test(ele.className)){
+//            ele.className+=" "+str;
+//        }
+//    };
+//
+//    function removeclass(ele,str){
+//        var reg=new RegExp("(^| )"+str+"( |$)","g");
+//        ele.className=ele.className.replace(reg," ");
+//    }
+//    var oli=document.getElementById("li1");
+//    console.log(removeclass(oli,"a"))
+
+</script>
+</body>
+</html>

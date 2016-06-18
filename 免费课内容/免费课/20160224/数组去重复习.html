@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //测试两种去重方法的性能
+    var obj={},ary2=[];
+    for(var i=0;i<10000;i++){   //随机在0-7000里取10000个数
+        ary2.push(Math.floor(Math.random()*7000));
+    }
+    ary1=ary2.slice(0);
+    var nowTime=new Date;   //标示开始时间
+
+    for(var i= 0;i<ary1.length;i++){//利用对象属性方法去重
+       var cur=ary1[i];
+        if(obj[cur]==cur){
+            ary1[i]=ary1[ary1.length-1];
+            ary1.length--;
+            i--;
+            continue;
+        }
+        obj[cur]=cur;
+    }
+    obj=null;
+    var endTime=new Date; //结束时间
+    console.log(endTime-nowTime);
+    console.log(ary1);
+
+
+
+    var nowTime=new Date;
+    for(var i=0;i<ary2.length-1;i++){// 冒泡排序双循环去重
+        var cur=ary2[i];
+        for(var j=i+1;j<ary2.length;j++){
+            if(cur==ary2[j]){
+                ary2[j]=ary2[ary2.length-1];
+                ary2.length--;
+                j--;
+                continue;
+            }
+        }
+    }
+    var endTime=new Date;
+    console.log(endTime-nowTime);
+    console.log(ary2);
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

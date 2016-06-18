@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .box{
+            width: 300px;
+            margin-top: 20px;
+            background: #cccccc;
+            margin: 0 auto;
+        }
+        ul,li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:#00007F
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+
+        .menu{
+            overflow: hidden;
+
+            /*border: 1px solid lavender;*/
+
+        }
+        .menu li.leve1 a{
+            display: block;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            text-indent: 14px;
+            border-top: 1px solid lightblue;
+            color: lightcyan;
+        }
+        .menu li ul{
+            overflow: hidden;
+
+        }
+        .menu li ul.leve2 {
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="menu">
+        <li class="leve1">
+            <a href="#">111</a>
+            <ul class="leve2">
+                <li ><a href="">aaa</a></li>
+                <li><a href="">bbb</a></li>
+                <li><a href="">ccc</a></li>
+                <li><a href="">ddd</a></li>
+            </ul>
+        </li>
+        <li class="leve1">
+            <a href="#">111</a>
+            <ul class="leve2">
+                <li ><a href="">aaa</a></li>
+                <li><a href="">bbb</a></li>
+                <li><a href="">ccc</a></li>
+                <li><a href="">ddd</a></li>
+            </ul>
+        </li>
+        <li class="leve1">
+            <a href="#">111</a>
+            <ul class="leve2">
+                <li ><a href="">aaa</a></li>
+                <li><a href="">bbb</a></li>
+                <li><a href="">ccc</a></li>
+                <li><a href="">ddd</a></li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+
+
+</div>
+</body>
+</html>

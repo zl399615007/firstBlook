@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="div1">div1</div>
+<script>
+    var ele=document.getElementById("div1");
+    on(ele,"mousedown",down);
+    var zIndex=1;
+
+    function increaseIndex(){
+        this.style.zIndex=++zIndex;
+    }
+   function on(ele,type,fn){
+       if(/^self/.test(type)){
+           if(!ele["aself"+type]) ele["aself"+type]=[];
+           var a=ele["aself"+type];
+           for(var i=0;i< a.length;i++){
+               if(a[i]==fn)return;
+           }
+           a.push(fn);
+           return;
+       }
+
+       if(ele.addEventListener){
+           ele.addEventListener(type,fn,false);
+           return;
+       }
+        if(!ele["my"+type]){
+            ele["my"+type]=[];
+            ele.attachEvent("on"+type,function(){run.call(ele)});
+        }
+       var a=ele["my"+type];
+       for(var i=0;i< a.length;i++){
+           if(a[i]==fn)return;//避免重复绑定
+       }
+       a.push(fn);
+   }
+
+    function selfRun(type,e){//type是自定义事件类型，e是系统的事件对象
+        var a=this["aself"+type];
+        if(a){
+            for(var i=0;i< a.length;i++){
+                if(typeof a[i]=="function"){
+                    a[i].call(this,e);
+                }else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+
+    }
+
+
+    function run(){//遍历执行保存在程序池里的方法
+        var e=window.event;
+        var type= e.type;
+        if(!e.target){
+            e.type= e.srcElement;
+            e.preventDefault=function(){
+                e.returnValue=false;
+            };
+            e.stopPropagation=function (){
+                e.cancelBubble=true;
+            };
+            e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+            e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;
+        }
+        var a=this["my"+type];//将程序池赋给a
+        if(a&& a.length){
+            for(var i=0;i< a.length;i++){
+                if(typeof a[i]=="function"){
+                    a[i].call(this,e);
+                }else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+
+
+    };
+    function off(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+            return
+        }
+        var a=ele["my"+type];
+        if(a&& a.length){
+            for(var i=0;i< a.length;i++){
+                if(a[i]==fn){
+                    a[i]=null;
+                    return;
+                }
+            }
+        }
+    };
+
+
+    function down(e){
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.pageX;
+        this.my= e.pageY;
+        if(this.setCapture){
+            this.setCapture();
+            on(this,"mousemove",move);
+            on(this,"mouseup",up)
+        }else{
+            this.MOVE=move.bind(this);
+            this.UP=up.bind(this);
+            on(document,"mousemove",this.MOVE);
+            on(document,"mouseup",this.UP);
+        }
+       selfRun.call(this,"selfdragstart",e);
+        e.preventDefault();
+    };
+
+    function move(e){
+
+        this.style.left=this.x+(e.pageX-this.mx)+"px";
+        this.style.top=this.y+(e.pageY-this.my)+"px";
+
+
+        selfRun.call(this,"selfdraging",e);
+    };
+
+    function up(e){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            off(this,"mousemove",move);
+            off(this,"mouseup",up);
+        }else{
+            off(document,"mousemove",this.MOVE);
+            off(document,"mouseup",this.UP);
+        }
+        selfRun.call(this,"selfdragend",e);
+
+    };
+
+    function clearEffct(){
+        clearTimeout(this.flytimer);
+        clearTimeout(this.dropTimer);
+    };
+
+    function getSpeed(e){
+        if(this.prev){
+            this.speed= e.pageX-this.prev;
+            this.prev= e.pageX;
+        }else{
+            this.prev=this.offsetLeft;
+        }
+    };
+
+    function fly() {
+        if (this.speed) {
+            this.speed *= .98;
+            var maxR = (document.documentElement.clientWidth || document.body.clientWidth) - this.offsetWidth;
+            var current = this.speed + this.offsetLeft;
+            if (current >= maxR) {
+                this.style.left = maxR + "px";
+                this.speed *= -1;
+            } else if (current <= 0) {
+                this.style.left = 0;
+                this.speed *= -1;
+            } else {
+                this.style.left = current + "px";
+            }
+
+            if (Math.abs(this.speed) >= 0.5)
+                this.flytimer = window.setTimeout(processThis(fly, this), 30);
+        }
+    }
+
+    function drop(){
+        if(this.dropspeed){
+            this.dropspeed+=9.8;
+        }else{
+            this.dropspeed=9.8;
+        }
+        this.dropspeed*=.95;
+        var maxB=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        var current=this.offsetTop+this.dropspeed;
+        if(current>=maxB){
+            this.style.top=maxB+"px";
+            this.dropspeed*=-1;
+            this.flag++;
+        }else{
+            this.style.top=current+"px";
+            this.flag=0;
+        }
+        if(this.flag<2)
+        this.droptimer=window.setTimeout(processThis(drop,this),30)
+    }
+
+
+    function processThis(fn,obj) {
+        return function (e) {
+            fn.call(obj, e);
+        }
+    };
+    function bianjie(){
+        if(this.offsetLeft>=1000){
+            this.style.left=1000+"px";
+        }else if(this.offsetLeft<=0){
+            this.style.left=0;
+        }
+    }
+    on(ele,"selfdraging",bianjie);
+    on(ele,"selfdragstart",clearEffct);
+    on(ele,"selfdragstart",increaseIndex);
+    on(ele,"selfdraging",getSpeed);
+    on(ele,"selfdragend",fly);
+    on(ele,"selfdragend",drop);
+
+
+</script>
+
+</body>
+</html>

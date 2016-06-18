@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style type="text/css">
+    #odiv span {
+        height: 30px;
+        width: 100px;
+        border: 1px solid aqua;
+        display: block;
+        float: left;
+        text-align: center;
+        line-height: 30px;
+        background: #cccccc;
+
+    }
+
+
+</style>
+<body>
+<div id="odiv">
+
+</div>
+<script type="text/javascript">
+    //    var container = document.getElementById("container");
+    //    for (var i = 1; i < 10; i++) {
+    //        container.innerHTML += "<span>" + i +"*9="+i*9+"</span>";
+    //
+    //    }
+    //    container.innerHTML="";
+    var str="";
+    for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j <= i; j++) {
+//            var n=i%2?"yellow":"red";
+//            var n="yellow";
+//            if(i%2==0){//隔行变色
+//                n="red";
+//            }
+//            str += "<span style='background-color:"+n+"'>" + j + "*" + i + "=" + i * j + "</span>";
+//        }
+
+            var n="yellow";
+            if(i%2==0){
+            n="red";}
+            str+="<span style='background-color: "+n+"'>"+j+"*"+i+"="+j*i+"</span>";
+        }
+
+
+
+
+
+
+        str += "<div style='clear:both'></div>";
+
+    }
+
+    odiv.innerHTML=str;
+</script>
+
+
+</body>
+</html>

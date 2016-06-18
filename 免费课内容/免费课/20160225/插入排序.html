@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    function sortInsert(array){
+//        var i=1,j,len=array.length,key;
+//        for(;i<len;i++){
+//            j=i;
+//            key=array[j];
+//            while(--j>-1){
+//                if(array[j]>key){
+//                    array[j+1]=array[j];
+//                }
+//                else
+//                {
+//                    break;
+//                }
+//            }
+//            array[j+1]=key;
+//        }
+//        return array;
+//    }
+//    console.log(sortInsert([1,7,2,4,3,1]));
+
+//    function insertSort(a){
+//        var temp=null;
+//        for(var i=1;i< a.length;i++){
+//            var temp=a[i];
+//            var j=i;
+//            while(temp<a[j-1]&&j>0){
+//                //满足当前比较的这个值要比前边的值小，并且比较的边界不能小于0
+//                a[j]=a[j-1];
+//                j--;
+//            }
+//            a[j]=temp;
+//        }
+//    }
+
+       function insertSort(a){
+//           var temp=null;
+           for(var i=0;i< a.length;i++){
+//               var temp=a[i];
+//               var j=i;
+//               while(temp<a[j-1]&&j>0){
+//                   a[j]=a[j-1];
+//                   j--;
+//               }
+               for(var j= i,temp=a[i];temp<a[j-1]&&j>0;j--){//将while换成for循环
+                   a[j]=a[j-1];
+               }
+               a[j]=temp;
+           }
+
+       }
+//思考题：如果把以上方法中的j都改成i，结果一样，也可以实现排序，请问有什么影响
+    var a=[3,2,1,7];
+    insertSort(a);
+    console.log(a);
+
+
+</script>
+
+</body>
+</html>

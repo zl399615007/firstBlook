@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>开关灯</title>
+    <style type="text/css">
+        body,div{
+            padding: 0px;
+            margin: 0px;
+        }
+        #div1{
+            width: 50%;
+            height: 500px;
+            margin: 20px auto;
+            background-color: white;
+            cursor: pointer;
+            border: 1px solid #008000
+
+        }
+        .bg{
+            background-color: #08BECE;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="div1">
+    </div>
+</div>
+<script type="text/javascript">
+    var oDiv=document.getElementById("div1");
+
+    oDiv.onclick =function(){
+        var bg=oDiv.style.backgroundColor;
+        if(bg=="white"){
+            oDiv.style.backgroundColor="red"
+        }else if(bg=="red"){
+            oDiv.style.backgroundColor="yellow"
+        }else if(bg=="yellow"){
+            oDiv.style.backgroundColor="green"
+        }else if(bg=="green"){
+            oDiv.style.backgroundColor="blue"
+        }else if(bg=="blue"){
+            oDiv.style.backgroundColor="black"
+        }else{
+            oDiv.style.backgroundColor="white"
+        }
+
+    }
+</script>
+</body>
+</html>

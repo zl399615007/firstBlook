@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var n=0;
+//    function fn(){
+//        var n=9;
+//        function inner(){//一个方法里的变量是谁，由这个方法定义的环境决定，则非由它运行的环境决定
+//            n++;
+//            return n;
+//        }
+//        //return inner(); 返回的是执行inner函数后的值
+//        return inner;   //返回的是方法的定义
+//    }
+//    var f=fn();
+//    var i=f();
+
+
+
+    //求某数的阶层
+//    function fn(n){//递归方法
+//        if(n<1){
+//            throw new Error("人为抛出异常")
+//        }
+//        if(n==1)return 1;
+//        return n*fn(n-1)
+//    }
+
+    function fn2(n){
+        var a=[];
+        for(var i=1;i<=n;i++){
+            a.push(i);
+        }
+//        var str= a.join("*");
+//        return eval(str);
+        var n=1;
+        while(a.length){
+            n*= a.pop();
+        }
+        return n;
+    }
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

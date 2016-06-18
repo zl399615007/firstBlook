@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li>11111111111</li>
+    <li>22222222222</li>
+    <li >33333333333</li>
+    <li id="oLi">44444444444</li>
+</ul>
+    <script>
+        //获得ul下的所有元素子节点，并且兼容所有的浏览器
+        function getChildren(ele){
+            var a=[];
+            var children=ele.childNodes;
+            for(var i=0;i<children.length;i++){
+                var child=children[i];
+                if(child&&child.nodeType==1){
+                    a.push(child);
+                }
+            }
+            return a;
+        }
+
+        var oUl=document.getElementById("list");
+
+  //      console.log(getChildren(oUl));
+
+
+        //2.获得当前元素的最近的哥哥元素节点，并且兼容所有的浏览器
+         //如果浏览器支持previousElementSibling这个属性，则返回ele.previousElementSiling
+        //如果浏览器不支持，则首先获取哥哥节点，再判断最近哥哥节点是否是元素节点，如果是则返回
+        function prev(ele){
+            if(ele.previousElementSibling){
+                return ele.previousElementSibling;
+            }
+            //下面操作的是不支持
+            var pre=ele.previousSibling;
+            while(pre){
+                if(pre.nodeType==1){
+                    return pre;
+                }
+                //如果不是元素节点，则继续往上找哥哥节点，并且把找到哥哥节点赋值给pre，再通过while循环判断下pre是否是元素节点
+                pre=pre.previousSibling;
+            }
+            return null;//null,表示没有哥哥元素节点
+        }
+        var oLi=document.getElementById("oLi");
+   //     console.log(prev(oLi));
+
+        //3.查找当前元素的所有的哥哥元素节点，并且兼容所有浏览器
+//        function prevAll(ele){
+//            var a=[];
+//            var pre=ele.previousSibling;
+//            while(pre){
+//                if(pre.nodeType==1){
+//                    a[a.length]=pre;
+//                }
+//                pre=pre.previousSibling;
+//            }
+//            return a;
+//        }
+
+        //优化
+        function prevAll(ele){
+            var a=[];
+            var pre=prev(ele); //利用prev方法找到最近的哥哥元素节点
+            while(pre){
+                a.push(pre);
+                pre=prev(pre); //继续往上找哥哥元素节点
+            }
+            if(a.length==0){
+                return null;
+            }
+            return a;
+        }
+        var oLi=document.getElementById("oLi");
+       // console.log(prevAll(oLi));
+
+
+        //getIndex()找到当前元素的索引
+        //当前元素有几个哥哥元素节点，有几个哥哥元素节点，索引就是几
+        function getIndex(ele){
+            var n=0; //假设当前元素的索引是0；
+            var pre=prev(ele); //当前元素的哥哥元素节点
+            //需要判断很多次是否存在哥哥元素节点，直到找到哥哥元素节点不存在（null);
+            while(pre){
+                n++;
+                pre=prev(pre);
+            }
+            return n;
+        }
+        console.log(getIndex(oLi));
+
+
+
+
+        //获得当前元素的最近的弟弟元素节点
+        //获得当前元素的所有的弟弟元素节点
+        //获得当前元素的最近的哥哥元素节点和最近的弟弟元素节点
+        //获得最后一个元素节点（兼容所有浏览器）
+        //获得第一个元素节点（兼容所有浏览器）
+        //通过类名获得所有的元素节点（兼容所有浏览器）
+    </script>
+
+
+
+
+</body>
+</html>

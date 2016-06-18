@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="a b c "></div>
+<script>
+    var oDiv=document.getElementsByTagName("div")[0];
+
+    function addClass(ele,str){//添加类名
+        var reg=new RegExp("(^| )"+str+"( |$)");
+        //下面这个判断只是为了更严谨，不做这个判断也可以
+        if(!reg.test(ele.className)){
+        ele.className+=" "+str;//前边有一个空格
+    }
+    };
+
+    function removeClsaa(ele,str){//移除类名
+        var reg=new RegExp("(^| )"+str+"( |$)","g");
+        ele.className=ele.className.replace(reg," ");//这个写法有bug，找出bug
+    };
+
+
+
+</script>
+</body>
+</html>

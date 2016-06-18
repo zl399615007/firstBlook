@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul > li {
+            background: blueviolet;
+            cursor: pointer;
+        }
+
+        ul > li:nth-child(odd) {
+            background: antiquewhite;
+        }
+
+        ul > li:hover {
+            background: darkorange;
+            cursor: pointer;
+        }
+
+        div {
+            width: 200px;
+            background: #cccccc;
+            border: 1px solid #000000;
+
+        }
+
+
+    </style>
+    <script src="jsonp.js"></script>
+    <script>
+        window.onload = function () {
+            var inputWindow = document.querySelector('input[type="text"]');
+
+            var searchButton = document.querySelector('input[type="button"]');
+            var ul = document.querySelector('ul');
+            ul.onclick=function (e){
+                e=e||window.event;
+                var target=e.target||e.srcElement;
+                window.open('http://www.baidu.com/s?word='+encodeURIComponent(target.innerHTML),'_black');
+            }
+
+            searchButton.onclick = function () {
+                var value = inputWindow.value;
+                if (value) {
+                }
+                x.jsonp('https://gsp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', {wd: value}, 'cb', function (data) {
+                    var list=data.s;
+                    var fragement=document.createDocumentFragment();
+                    ul.innerHTML='';
+                    for(var i=0,j=list.length;i<j;i++){
+                        var li=document.createElement('li');
+                        li.innerHTML=list[i];
+                        fragement.appendChild(li);
+                    }
+                    ul.appendChild(fragement);
+                })
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<input type="text" ><input type="button" value="百度一下">
+<div>
+    <ul>
+
+
+    </ul>
+
+</div>
+</body>
+</html>

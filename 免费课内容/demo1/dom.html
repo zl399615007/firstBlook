@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+   /*#div1{*/
+       /*width: 800px;*/
+       /*margin: 10px auto;*/
+   /*}*/
+        /*#div1 ul{*/
+            /*list-style: none;*/
+            /*margin: 0;*/
+            /*padding: 0;*/
+            /*overflow: hidden;*/
+        /*}*/
+        /*#div1 ul li{*/
+            /*float: left;*/
+            /*height: 30px;*/
+            /*width: 100px;*/
+            /*margin-left: 10px;*/
+            /*background: aqua;*/
+            /*font-size: 16px;*/
+            /*text-align: center;*/
+            /*line-height: 30px;*/
+            /*cursor: pointer;*/
+        /*}*/
+        /*#div1 div{*/
+            /*background: #cccccc;*/
+            /*display: none;*/
+            /*height: 800px;*/
+        /*}*/
+        /*#div1 li.selectLi{*/
+            /*background: #cccccc;*/
+
+        /*}*/
+        /*#div1 div.selectDiv{*/
+            /*display: block;*/
+        /*}*/
+        #div1 span{
+            height: 30px;
+            width: 100px;
+            float: left;
+            border: 1px solid #cccccc;
+            display: block;
+            text-align: center;
+            line-height: 30px;
+
+        }
+
+    </style>
+</head>
+<body id="oBody">
+<ul id="list">
+    <li >11111111111</li>
+    <li>22222222222</li>
+    <li id="oLi">33333333333</li>
+    <li >44444444444</li>
+</ul>
+<script>
+    //1获得当前元素的最近的弟弟元素节点
+    function fn1(ele){
+        if(ele.nextElementSibling){
+            return ele.nextElementSibling;
+        }
+        var nex=ele.nextSibling;
+        while(nex) {
+            if(nex.type==1){
+                return nex;
+            }
+            nex=nex.nextSibling;
+        }
+        return null;
+    }
+    var oLi=document.getElementById("oLi");
+//    console.log(fn1(oLi));
+
+
+    //2获得当前元素的所有的弟弟元素节点
+    function fn2(ele){
+        var a=[];
+        var next=fn1(ele);
+        while(next){
+            a.push(next);
+            next=fn1(next);
+        }
+        if(a.length==0){
+            return null;
+        }
+        return a;
+    }
+  //  console.log(fn2(oLi));
+
+    //3获得当前元素的最近的哥哥元素节点和最近的弟弟元素节点
+    function prev(ele){
+        //通用原则是一个属性或一个变量，如果是对象类型的，需要初始化的时候赋一个null值
+        //如果不是对象类型
+        if(typeof ele.previousElementSibling=="object"){
+            return ele.previousElementSibling;
+        }
+        var pre=ele.previousSibling;
+        while(pre){
+            if(pre.nodeType==1){
+                return pre;
+            }
+            pre=pre.previousSibling;
+        }
+        return null;//null,表示没有哥哥元素节点
+
+        if(typeof ele.nextElementSibling=="object"){
+            return ele.nextElementSibling;
+        }
+        var pre=ele.nextSibling;
+        while(pre){
+            if(pre.nodeType==1){
+                return pre;
+            }
+            pre=pre.nextSibling;
+        }
+        return null;//null,表示没有哥哥元素节点
+    }
+    //var a=[];
+  //  a.push(prev(oLi),fn1(oLi));
+
+ //   console.log(a);
+
+
+    //4获得最后一个元素节点（兼容所有浏览器）
+    var oBody=document.getElementById("list");
+    function getElement(ele){
+        var a=[];
+        var element=ele.childNodes;
+
+       for(var i=0;i<element.length;i++){
+           if(element[i].nodeType==1){
+               a.push(element[i]);
+
+               continue;
+           }
+       }
+        if(a.length==0){
+            return null;
+        }
+        return a[a.length-1];
+    }
+getElement(oBody);
+
+
+
+
+    //5获得第一个元素节点（兼容所有浏览器）
+//    function getElement(ele){
+//        var a=[];
+//        var element=ele.childNodes;
+//        for(var i=0;i<element.length;i++){
+//            if(element[i].nodeType==1){
+//                a.push(element[i]);
+//            i--;
+//                continue;
+//            }
+//        }
+//        if(a.length==0){
+//            return null;
+//        }
+//        return a[0];
+//    }
+
+    //console.log(getElement(oBody));
+
+
+    //5通过类名获得所有的元素节点（兼容所有浏览器）
+    function getClassName(ele){
+        var cla=document.getElementsByClassName("")
+    }
+
+
+</script>
+
+</body>
+</html>

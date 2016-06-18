@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  //所有的方法都是Function类上的实例，可以访问Function类原型上的所有的属性和方法
+    //所有的对象都是Object类上的实例，可以访问Object类原型上的属性和方法
+
+    //call的作用
+    //1.让当前的函数运行
+    //2.call方法的第一个参数是用来改成当前函数的this指向，传的第一个参数是什么，当前函数的this就是谁（非严格模式下如果call没有传参数，fn里的this就是window，如果第一个参数是null或者undefined，this也是window，严格模式下没有传参数是undefined，其他情况传什么this就是什么)
+
+    //apply方法的作用
+    //1.让当前的函数运行
+    //2.apply第一个参数也是用来改变当前函数的this指向，第二个参数是一个数组或者是类数组
+    //fn.apply(this，[参数1，参数2...])
+    //
+
+    //call和apply第一个参数表达的含义是一样的，从第二个开始，cll是一个个的传给fn的，而apply是吧这些参数都放在数组里传给fn的，也相当于一个个的给fn的形参赋值
+
+    //预处理->事先把fn的this改变为我们想要的结果，并且把对应的参数值也准备好了，以后要用到了，直接的执行即可。
+    //bind:这个方法在IE6~8下不兼容->和call/apply类似，都是用来改变this关键字的
+    //fn.bind(obj,1,2)->只是改变了fn中的this为obj，并且给fn传递了两个参数值1、2,但是此时并没有把fn这个函数执行；执行bind会有一个返回值，这个返回值tempFn就是把fn的this改变后的那个结果。tempFn()
+
+
+
+
+
+</script>
+</body>
+</html>

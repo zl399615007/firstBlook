@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 200px;
+            left: 50px;
+            opacity: 1;
+        }
+        #left{
+            width: 50px;
+            height: 50px;
+            background: black;
+            position: absolute;
+            top: 50px;
+            left: 600px;
+            color: white;
+        }
+        #right{
+            color: white;
+             width: 50px;
+             height: 50px;
+             background: black;
+            position: absolute;
+            top: 50px;
+            left: 400px;
+         }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="left">left</div>
+<div id="right">right</div>
+<script src="../../js/animate.js"></script>
+<script>
+
+
+//    animate.getCss=function (ele,attr){
+//        if(window.getComputedStyle){
+//            return   parseFloat(getComputedStyle(ele,null)[attr])
+//        }else{
+//            if(attr=="opacity"){
+//                var value=ele.currentStyle.filter;
+//                var reg=/alpha\(opacity *= *(\d+(?:\.\d+)?)\)/;
+//                if(reg.test(value)){
+//
+//                    return RegExp.$1/100;
+//                }else{
+//                    return 1;
+//                }
+//            }
+//            return parseFloat(ele.currentStyle[attr])
+//        }
+//    };
+//
+//    animate.setCss=function(ele,attr,value){
+//        if(attr=="opacity"){
+//            ele.style.opacity=value;
+//            ele.style.filter="alpha(opacity="+value*100+")";
+//        }else{
+//            ele.style[attr]=value+"px";
+//        }
+//    }
+//
+//    function animate(ele,obj,duration,callback){
+//       // clearInterval(ele.timer)
+//        var oChange={};
+//        var oBegin={};
+//        var flag=0;   //用来记录有多少有效change的计数器
+//        for(var attr in obj){
+//        var target=obj[attr];
+//        var begin=animate.getCss(ele,attr);
+//          //  console.dir(attr)
+//        var change=target-begin;
+//            if(change){
+//            oBegin[attr]=begin;
+//            oChange[attr]=change;
+//                flag++;
+//
+//        }
+//    }
+//        if(flag===0){
+//            return;
+//        }
+//
+//        var times=0;  //记录当前消耗的时间
+//        var interval=15;//每步动画的时间间隔
+//       clearInterval(ele.timer);//防止动画积累
+//
+//        function step(){
+//            times+=interval;
+//            if(times<duration){
+//                for(var attr in oChange){
+//                    var change=oChange[attr];
+//                    var begin=oBegin[attr]
+//
+//                    //var val=times/duration*change+begin;
+//                    var  val=zhufengEffect.zfBounce.easeIn(times,begin,change,duration);
+//                    animate.setCss(ele,attr,val);
+//                }
+//            }else{
+//                for(var attr in oChange){
+//                    animate.setCss(ele,attr,obj[attr]);//强制到达终点
+//                }
+//                clearInterval(ele.timer);
+//                ele.timer=null;
+//                if(typeof  callback=="function"){
+//                    callback.call(ele);
+//                }
+//            }
+//
+//
+//        }
+//        ele.timer=window.setInterval(step,interval);
+//
+//
+//    };
+
+
+
+
+    right.onclick=function(){
+        var obj={width:100,height:100,left:200,top:50,opacity:1}
+        animate(div1,obj,3000,2)
+    };
+
+
+
+    left.onclick=function(){
+        var obj={width:20,height:20,left:10,top:10,opacity:0}
+        animate(div1,obj,3000,2)
+    }
+</script>
+</body>
+</html>

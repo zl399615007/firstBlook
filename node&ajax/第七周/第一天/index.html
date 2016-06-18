@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取服务器时间</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<h1>时钟</h1>
+<span id="clock"></span>
+
+<script>
+   window.onload=function (){
+    setInterval(function (){
+        //先创建一个ajax对象
+        var xhr=new XMLHttpRequest();
+        //打开,指定请求的方法和url
+        xhr.open('get','/clock',true);
+        //指定当你接收到请求之后如何处理
+        xhr.onreadystatechange=function (){
+            document.querySelector('#clock').innerHTML=xhr.responseText;
+
+        };
+        //向服务器端发送请求
+        xhr.send();
+    })
+   }
+</script>
+</body>
+</html>

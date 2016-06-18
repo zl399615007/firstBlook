@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //在IE6~8浏览器中，不支持借用数组的slice实现将元素集合（节点集合）转换成数组
+    //但是对于arguments借用数组的方法是不存在兼容问题
+//    try{//如果浏览器支持则执行try里的，如果不支持不会报错，而是执行catch里的语句
+//
+//
+//    }catch(e){//形参必须要写，e.message可以收集代码报错的原因
+//      console.log(e.message);  //捕获出错的信息
+//
+//    }finally{//不管try中的代码是否报错，都要执行finally中的代码，一般不用
+//
+//    }
+    //有时候即想捕获到错误的信息，又不想让下面的代码继续执行->手动抛出一条错误信息，终止代码执行->throw new Error("");
+    //new ReferenceError->引用错误
+    //new TypeError->类型错误
+    //new RangeError->范围错误
+
+
+    function listToArray(likeArray){
+        try{
+            return [].slice.call(likeArray,0);
+
+        }catch(e){
+            var ary=[];
+            for(var i= 0;i<likeArray.length;i++){
+                ary[ary.length]=likeArray[i];
+            }
+            return ary;
+
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

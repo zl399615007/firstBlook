@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function getRandom(n,m){
+        n=Number(n);
+        m=Number(m);
+        if(isNaN(n)||isNaN(m)){
+            return Math.random();
+        }
+
+        return Math.round(Math.random()*(m-n)+n);
+
+    }
+    console.log(getRandom(1,5));
+
+//    var ary=[];obj={};
+//    for(var i=0;i<4;i++){
+//        ary.push(getRandom(0,10));//取0-10之间的随机4个数
+//           var cur=ary[i];
+//        if(obj[cur]==cur){
+//            ary.splice(i,1);
+//            i--;
+//            continue;
+//        }
+//        obj[cur]=cur;
+//    }
+//    obj=null;
+//    console.log(ary);
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

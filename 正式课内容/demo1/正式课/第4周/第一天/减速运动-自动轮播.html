@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #outer {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        #inner {
+            width: 1200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+        }
+
+        #inner li {
+            width: 300px;
+            height: 200px;
+            float: left;
+            font-size: 30px;
+            color: #ffffff;
+            list-style: none;
+
+        }
+
+        #btn {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+
+        }
+
+        #btn span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: orange;
+            text-align: center;
+            margin: 5px;
+            cursor: pointer;
+            line-height: 30px;
+            -webkit-user-select: none;
+            color: #ffffff;
+        }
+
+        #inner li:nth-child(1) {
+            background: pink;
+        }
+
+        #inner li:nth-child(2) {
+            background: lightblue;
+        }
+
+        #inner li:nth-child(3) {
+            background: orchid;
+        }
+
+        #inner li:nth-child(4){
+            background: saddlebrown;
+        }
+        #btn span.cur{
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <ul id="inner">
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+
+    </ul>
+</div>
+<div id="btn">
+    <span class="cur">1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <script src="../../js/jquery-1.12.1.js"></script>
+    <script src="../../js/Dom.js"></script>
+    <script>
+       function buffer(ele,target){
+           window.clearTimeout(ele.timer);
+           function step(){
+           var nSpeed=(target-ele.offsetLeft)/10;
+           nSpeed=nSpeed>0?Math.ceil(nSpeed):Math.floor(nSpeed);
+           ele.style.left=ele.offsetLeft+nSpeed+"px";
+           if(nSpeed==0){
+               window.clearTimeout(ele.timer);
+           }
+           ele.timer=window.setTimeout(step,15);
+           }
+           step();
+       }
+        var oSpan=document.getElementById("btn").getElementsByTagName("span");
+       var oInner=document.getElementById("inner");
+        for(var i=0;i<oSpan.length;i++){
+            oSpan[i].index=i;
+            oSpan[i].onclick=function(){
+                buffer(oInner,-300*this.index);
+                setCur(oSpan[this.index]);
+                window.clearInterval(autoTimer);
+                autoTimer=window.setInterval(autoLeft,1000);
+                n=this.index;
+            }
+
+        }
+        //自动往左边运动
+       var firstLi=Dom.children(oInner,"li")[0];
+       firstLi=firstLi.cloneNode(true);
+       firstLi.style.backgroundColor="pink";
+       oInner.appendChild(firstLi);
+       oInner.style.width=oInner.offsetWidth+firstLi.offsetWidth+"px";
+       var n=0;
+       var autoTimer;
+
+        function autoLeft(){
+            n++;
+
+            if(n==5){
+               oInner.style.left=0;
+                n=1;
+            }
+            if(n==4){
+                setCur(oSpan[0]);
+            }else{
+                setCur(oSpan[n]);
+            }
+            buffer(oInner,-300*n);
+        }
+    autoTimer=window.setInterval(autoLeft,1000);
+
+          function setCur(ele){
+          Dom.addClass(ele,"cur");
+          var siblings=Dom.siblings(ele);
+          for(var i=0;i<siblings.length;i++){
+              Dom.removeClass(siblings[i],"cur")
+          }
+      }
+
+
+
+
+
+
+    </script>
+</div>
+</body>
+</html>

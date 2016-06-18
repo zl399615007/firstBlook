@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //不重复
+    var ary=[];
+    for(var i=0;i<100;i++){
+        ary.push(i);
+    }
+    ary.sort(function(){  //无序的方法
+        return Math.random()>0.5});
+   console.log(ary);
+
+ //有重复
+//    var ary2=[];
+//    for(var i=0;i<100;i++){
+//        ary2.push(Math.floor(Math.random()*10));
+//    }
+//    console.log(ary2);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+
+table.outside{
+    font-size: 12px;
+    padding: 0px;
+    position: absolute;
+    left: 50%;
+    margin-left: -134px;
+}
+td.title{
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 0;
+}
+td.outside{
+    padding: 0 1px 4px 1px;
+}
+table.inside{
+    width: 269px;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+td.tdinside{
+    padding: 7px 0 7px 10px;
+    background-color: #ffd455;
+}
+form{
+    margin: 0;
+    padding: 0;
+}
+input{
+    font-size: 12px;
+}
+a{
+    color: #000000;
+    text-decoration: none;
+}
+a:link {color:#FF0000;}    /* 未被访问的链接 */
+a:visited {color:#00FF00;} /* 已被访问的链接 */
+a:hover {color:#FF00FF;}   /* 鼠标指针移动到链接上 */
+a:active {color:#0000FF;}

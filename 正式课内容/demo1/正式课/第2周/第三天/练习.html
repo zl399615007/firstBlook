@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        #oTab {
+            border: 1px solid green;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+            -moz-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        #oTab table {
+            border-collapse: collapse;
+
+        }
+
+        #oTab table thead {
+            cursor: pointer;
+        }
+
+        #oTab table tr td {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed yellow;
+            text-align: center;
+        }
+
+        #oTab table tbody tr:nth-child(even) {
+            /*tbody标签下的子元素是偶数行*/
+            background: pink;
+        }
+
+        #oTab table tbody tr:nth-child(odd) {
+            /*tbody标签下的子元素是奇数行*/
+            background: orange;
+        }
+
+
+    </style>
+</head>
+<body><div id="oTab">
+    <table width="100%";>
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>成绩</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>陈旭</td>
+            <td>22</td>
+            <td>74</td>
+        </tr>
+        <tr>
+            <td>王梦圆</td>
+            <td>18</td>
+            <td>54</td>
+        </tr>
+        <tr>
+            <td>姜章涛</td>
+            <td>24</td>
+            <td>51</td>
+        </tr>
+        <tr>
+            <td>张旭</td>
+            <td>18</td>
+            <td>99</td>
+        </tr>
+        <tr>
+            <td>陈雪</td>
+            <td>18</td>
+            <td>100</td>
+        </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
+<script>
+    function likeA(like){
+        try{
+            return Array.prototype.slice.call(like,0);
+        }catch(r){
+            var ary=[];
+            for(var i=0;i<like.length;i++){
+                ary[ary.length]=like[i];
+            }
+            return ary;
+        }
+    }
+    var oTab=document.getElementById("oTab");
+    var oThead=oTab.getElementsByTagName("thead")[0];
+    var oTbody=oTab.getElementsByTagName("tbody")[0];
+    var oRows=oTbody.rows;
+    function tabSort(n,key){
+        if(key.flag){
+            key.flag*=-1;
+        }else{
+            key.flag=1;
+        }
+        var aRows=likeA(oRows);
+        aRows.sort(function(a,b){
+            if(!isNaN(Number(a.cells[n]))){
+           return key.flag*(a.cells[n].innerHTML- b.cells[n].innerHTML);
+            }else{
+             return key.flag*(a.cells[n].innerHTML.localeCompare(b.cells[n].innerHTML));
+            }
+        });
+        for(var i=0;i<aRows.length;i++){
+            oTbody.appendChild(aRows[i]);
+        }
+
+    }
+    var hrows=oThead.rows[0];
+    var cells=hrows.cells;
+    for(var i=0;i<cells.length;i++){
+        ~(function(i){
+           return cells[i].onclick=function(){
+               tabSort(i,this);
+           }
+        })(i);
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

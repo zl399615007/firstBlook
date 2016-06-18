@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<p>使网站实现保存记录和查询记录的功能</p>
+<div id="div1">
+
+
+<form method="get" >
+    姓名：<input type="text" name="name" value="郑龙"><br>
+    性别：<input type="radio" name="gender"  checked value="男">男
+    <input type="radio" name="gender" value="女">女
+    <input type="radio" name="gender" value="其他">其他
+    <br>
+    年龄：<input type="text" name="age" value="24"><br>
+    爱好：<input type="checkbox" name="hobby" value="wow">wow
+    <input type="checkbox" name="hobby" value="DOTA">DOTA
+    <input type="checkbox" name="hobby" value="LOL">LOL
+    <input type="checkbox" name="hobby" value="cf">cf
+    <br>
+    所学课程
+    <select multiple name="course" >
+        <option>wow</option>
+        <option>dota</option>
+        <option>lol</option>
+        <option>cf</option>
+        <option>cs</option>
+        <option>打豆豆</option>
+    </select><br>
+
+    战绩：
+    <select name="degree">
+        <option>超神</option>
+        <option>五杀</option>
+        <option>四杀</option>
+        <option>三杀</option>
+        <option>超鬼</option>
+    </select>
+    <!--当触发类型为submit的按钮时，会触发form的submit默认行为-->
+    <input type="button" value="提交" name="btn">
+</form>
+</div>
+<div id="content">
+    这里显示服务器端保存的数据
+</div>
+<script>
+    var btn=document.getElementsByName("btn").item(0);
+    btn.onclick=function () {
+        var xhr=new XMLHttpRequest();
+        var queryStr=serialize(this.parentNode);
+        xhr.open("get","/ajax?"+queryStr,true);
+        xhr.send();
+        xhr.onreadystatechange=function (){
+        if(xhr.readyState==4&&xhr.status==200){
+            var content=document.getElementById("content");
+            var oTable=content.getElementsByTagName("table").item(0);
+            if(oTable){
+                var oTbody=oTable.tBodies.item(0);
+
+                var oTr=document.createElement("tr");
+                var obj=JSON.parse(xhr.responseText);
+                for(var attr in obj){
+                    var oTd=document.createElement("td");
+                    oTd.innerHTML=obj[attr];
+                    oTr.appendChild(oTd);
+                }
+                oTbody.appendChild(oTr);
+
+
+
+
+            }else{//没有表格创建表格、行、列
+                var oTable=document.createElement("table");
+                var oTbody=document.createElement("tbody");
+
+                var oTr=document.createElement("tr");
+                var obj=JSON.parse(xhr.responseText);
+                for(var attr in obj){
+                    var oTd=document.createElement("td");
+                    oTd.innerHTML=obj[attr];
+                    oTr.appendChild(oTd);
+                }
+                oTbody.appendChild(oTr);
+                oTable.appendChild(oTbody);
+                content.appendChild(oTable);
+
+            }
+        }
+        }
+
+
+    }
+//    btn.onclick=function (){
+//        var xhr=XMLHttpRequest;
+//        var oName=document.getElementsByName("name")[0];
+//        var oAge=document.getElementsByName("age")[0];
+//        var oGender=document.getElementsByName("gender");
+//
+//        var queryStr=oName.name+"="+oName.value;
+//        queryStr+="&"+oAge.name+"="+oAge.value;
+//        //下面处理单选按钮
+//        for(var i=0;i<oGender.length;i++){
+//            if(oGender[0].checked){
+//                queryStr+="&"+oGender[i].name+"="+oGender[i].value;
+//            }
+//        };
+//        //处理复选按钮
+//        var oHobby=document.getElementsByName("hobby");
+//        for(var i=0;i<oHobby.length;i++){
+//            if(oHobby[0].checked){}
+//        }
+//    };
+//表单的类型有多少：text,password（密码）,hidden(隐藏域，不显示)，button,submit,reset(重置)
+    //下拉菜单和选择按钮（radio和checkbox）区别对待，剩下所有的其他表单元素都按name+"="+value原则进行处理
+    //表单指form标签，表单元素指form里面“有效”的按钮
+
+
+    function serialize(form){//表单序列化
+        //form指表单，操作的是form里的所有的有效表单元素
+        var str="";
+        var eles=form.elements;//就是指form里所有的表单元素集合
+        var a=[];
+        for(var i=0;i<eles.length;i++){
+            var ele=eles[i];
+            if(ele.name.length){//必须保证此表单元素写了name属性
+                switch(ele.type){
+                    case "select-one"://单选菜单
+                    case "select-multiple"://复选菜单
+                        var opts=ele.options;
+                        for(var j=0;j<opts.length;j++){
+                            if(opts[j].selected){
+                                a.push(encodeURIComponent(ele.name)+"="+encodeURIComponent(opts[j].value))
+                            }
+                            //str+=ele.name+"="+opts[j].value+"&"
+                        }
+                        break;//处理单选或多选按钮
+                    case "file":
+                    case "submit":
+                    case "button":
+                    case "reset":
+                        break;//处理多选菜单
+                    case "radio":
+                    case "checkbox":
+                        if(!ele.checked)break;
+                    default:
+                        a.push(encodeURIComponent(ele.name)+"="+encodeURIComponent(ele.value));
+
+                }
+            }
+
+        }
+
+        return a.join("&");
+
+    }
+    var form=document.getElementsByTagName("form")[0];
+    console.log(serialize(form))
+    //表单序列化：
+    //问题1：我们要用JS来完成数据提交，如何用JS实现表单序列化
+    //问题2：如何把用ajax提交上来的数据保存到data.txt文件中，
+    //问题3：如何把提交到后台数据以异步的方式显示到页上
+    //问题4：什么跨域？JSONP跨域是怎么回事
+
+
+
+</script>
+</body>
+</html>

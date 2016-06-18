@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style type="text/css">
+
+
+    </style>
+
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>username</th>
+        <th>age</th>
+        <th>sex</th>
+        <th>class</th>
+    </tr>
+    </thead>
+    <tfoot class="tfoot">
+    <tr>
+        <td colspan="2"><button class="btn btn-primary">上一页</button></td>
+        <td colspan="2"><button class="btn btn-primary">下一页</button></td>
+    </tr>
+    </tfoot>
+</table>
+<script>
+
+        var xhr=new XMLHttpRequest();
+        xhr.open("get","user.json",true);
+        xhr.onreadystatechange=function () {
+            if (xhr.readyState == 4) {
+                var data = xhr.responseText;
+
+                 var a = JSON.parse(data);
+                init(a.list.length,5,tfoot,a.list)
+                //var oTable=document.getElementsByTagName("table")[0];
+//                var oTbody=document.createElement("tbody");
+//                for(var i=0;i<a.list.length;i++){
+//                   var oTr = document.createElement("tr");
+//                    for (var attr in a.list[i]) {
+//                        var oTd= document.createElement("td");
+//                        oTd.innerHTML=a.list[i][attr];
+//                       oTr.appendChild(oTd);
+//                    }
+//                    oTbody.appendChild(oTr);
+//                    oTable.appendChild(oTbody);
+
+                }
+                //var oTbody = document.createElement("tbody");
+
+            };
+        xhr.send();
+
+        
+     var tfoot=document.getElementsByClassName("tfoot")[0];
+
+    function init(total,num,table,a){
+        var pageCount=Math.ceil(total/num);
+        //创建页面导航
+        var nav=document.createElement("p");
+        table.appendChild(nav);
+        var totalPage=document.createElement("span");
+        totalPage.innerHTML="共"+pageCount+"页";
+        nav.appendChild(totalPage);
+        var upPage=document.createElement("span");
+        upPage.innerHTML="上一页";
+        upPage.onclick=up;//向上翻页
+        nav.appendChild(upPage);
+        var downPage=document.createElement("span");
+        downPage.innerHTML="下一页";
+        downPage.onclick=down;//向下翻页
+        nav.appendChild(downPage);
+        //中间页码
+        for(var i=0;i<pageCount;i++){
+
+            var oPage=document.createElement("span");
+            oPage.innerHTML=i+1;
+            if(!i)oPage.className="btn";//让第一页样式成为默认第一页
+        }
+        function showPage(){//显示指定的第N页，n从0开始，0表示第一页
+            var oTbody=table.tBodies[0];
+            if(oTbody){
+                oTbody.innerHTML="";
+            }else {
+                oTbody=document.createElement("tbody");
+                table.appendChild(oTbody);
+            }
+            for(var i=n*5;i<(n+1)*5;i++){
+                   var oTr = document.createElement("tr");
+                    for (var attr in a.list[i]) {
+                        var oTd= document.createElement("td");
+                        oTd.innerHTML=a.list[i][attr];
+                       oTr.appendChild(oTd);
+                    }
+                oTbody.appendChild(oTr);
+                    table.appendChild(oTbody);
+
+
+            }
+        };
+    };
+    function up(){
+
+    };
+    function down(){
+
+    };
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        div{
+        width: 100px;
+        height: 100px;
+        background: green;
+    }
+        @media screen and (min-width: 1000px){
+            div{
+                background: red;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<!--1.移动设备基本上默认的layoutviewport值是980，设置meta,layoutviewport是布局的宽度，viewport
+2.页面布局不使用绝对宽度
+3.媒体查询：在不同设备/不同窗口下，无缝的实现在不同样式集之间切换
+@media
+device-pixel-ratio 设备像素比=css像素/物理像素  1css像素=设备像素比的平方
+css像素、物理像素、分辨率=device*设备像素比）
+window.orientation 如果值是0，或者180，portrait(竖着的)
+                    如果值是90或者-90  landscape(横着的)
+
+orientationchange 手机旋转触发
+4.图片自适应
+
+
+
+
+
+
+-->
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="">
+        table{
+            border: 1px solid #000;
+            width: 500px;
+            border-radius: 5px;
+            border-collapse: collapse;
+        }
+        table td{
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid lightblue;
+            text-align: center;
+
+        }
+
+        thead{
+            background: #cccccc;
+        }
+        tfoot td{
+            text-align: center;
+        }
+    </style>
+    <script src="baqi.js"></script>
+    <script>
+        window.onload=function (){
+            var getIndex=function (){
+                var index={};
+                var th=document.querySelectorAll("th");
+                for(var i=0;i<th.length;i++){
+                    index[th[i].getAttribute('node-type')]=i;
+                }
+                return index;
+            };
+            x.get('user.json',null,function (data) {
+                var list=null;
+                var len=0;
+                var index=getIndex();
+                if((list=data.list)&&(len=list.length)){
+                    var html='';
+                   while (len--){
+                       html+='<tr>';
+                       var arr=[];
+                       for(var n in list[len]){
+                           var _index=index[n];
+                           arr[_index]='<td>'+list[len][n]+'</td>'
+                          // html+='<td>'+list[len][n]+'</td>'
+                       }
+                       html+=arr.join('')+'</tr>';
+                   }
+                    document.querySelector('tbody').innerHTML=html;
+                }
+
+
+            },'json')
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+<table>
+    <caption>用户信息</caption>
+    <thead>
+    <tr>
+        <th node-type="username">名称</th>
+        <th node-type="age">年龄</th>
+        <th node-type="sex">性别</th>
+        <th node-type="class">班级</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2"><button>上一页</button></td>
+        <td colspan="2"><button>下一页</button></td>
+    </tr>
+    </tfoot>
+
+</table>
+</body>
+</html>

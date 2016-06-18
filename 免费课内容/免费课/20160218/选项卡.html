@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style type="text/css">
+        #tab {
+            width: 800px;
+            margin: 10px auto;
+
+        }
+
+        #tab ul {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            list-style: none;
+        }
+
+        #tab li {
+            float: left;
+            width: 130px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 16px;
+            background: #9c9;
+            margin-left: 10px;
+            cursor: pointer;
+            position: relative;
+            left: -10px;
+
+        }
+
+        #tab li.selectedLi {
+            background: #ccc;
+            font-weight: bold;
+        }
+
+        #tab div {
+            clear: both;
+            height: 400px;
+            padding: 10px;
+            background: #ccc;
+            display: none;
+            text-align: center;
+            line-height: 400px;
+
+        }
+
+        #tab div.selectedDiv {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <!--div#tab>(ul>li*4)+div*4-->
+    <ul>
+        <li class="selectedLi">选项一</li>
+        <li>选项二</li>
+        <li>选项三</li>
+        <li>选项四</li>
+        <li>选项五</li>
+    </ul>
+
+    <div class="selectedDiv">内容一</div>
+    <div>内容二</div>
+    <div>内容三</div>
+    <div>内容四</div>
+    <div>内容五</div>
+
+
+</div>
+<script type="text/javascript">
+    //JS中操作类样式用className属性
+    var oDiv=document.getElementById("tab");
+    var oLis=oDiv.getElementsByTagName("li");
+    var oDivs=oDiv.getElementsByTagName("div");
+    var n=0;
+    function changeTab (index){
+        oLis[n].className="";
+        oDivs[n].className="";
+        oLis[index].className="selectedLi";
+        oDivs[index].className="selectedDiv";
+        n=index
+
+    }
+
+//    for(var i=0;i<oLis.length;i++){
+//        ;function(i){//加了自运行的函数，形成闭包
+ //       oLis.item(i).onclick=function(){changeTab(i)};
+//        当循环执行的时候做事件绑定
+//    }(i);
+
+    for(var i=0;i<oLis.length;i++){
+        oLis.item(i).onclick=function (i){
+            return function (){changeTab(i)};
+        }(i);
+    }
+//
+//    }
+//    //循环和changeTag方法不是一起执行的
+//    for(var i=0;i<oLis.length;i++){
+//        var oLi=oLis.item(i);
+//        oLi.n=i;//把当前循环执行的时候的i的值保存到这个元素的自定义属性上
+//        oLi.onmousemove=function(){
+//            //这里的this是指的当前被点中的那个li
+//            changeTab(this.n);
+//        }
+//    }
+
+</script>
+
+
+</body>
+</html>

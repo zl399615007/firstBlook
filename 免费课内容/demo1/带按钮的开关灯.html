@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>带按钮的开关灯</title>
+    <style type="text/css">
+        body,div{
+            padding: 0px;
+            margin: 0px;
+        }
+        #pid{
+            height: 100px;
+            width: 100px;
+            margin: 20px auto;
+            border: 1px solid #008000
+        }
+       #btn{
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="pid" style="background-color: red" ;>
+    <p>
+        <button id="btn" type="button" >开关</button>
+    </p>
+</div>
+<script type="text/javascript">
+    var oDiv=document.getElementById("pid")
+    var oBtn=document.getElementById("btn")
+    oBtn.onclick=function (){
+        var bg=oDiv.style.backgroundColor
+    if(bg=="red"){
+        oDiv.style.backgroundColor="black"
+    }else if(bg=="black"){
+        oDiv.style.backgroundColor="yellow"
+    }else{
+        oDiv.style.backgroundColor="red"
+    }
+    }
+</script>
+
+</body>
+</html>

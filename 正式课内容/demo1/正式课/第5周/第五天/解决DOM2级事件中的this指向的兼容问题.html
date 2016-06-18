@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 300px;
+            height: 100px;
+            background: red;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="div1" >div1</div>
+<script>
+    //DOM0：为了区分最原始的操作网页结构的脚本，它们出现在DOM Core(DOM第一个版本）之前，称之为DOM0，
+    //DOM2版本里增加了一些新的方法，主要是事件相关的方法（addEventListener,removeEventListener）,还有相关的一些事件类型，比如“DOMContentLoaded”
+
+
+    function bind(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false)
+        }else if(ele.attachEvent){
+           if(!ele["fnEvent"+type]){
+               ele["fnEvent"+type]=[];
+           }
+            var a=ele["fnEvent"+type];
+            for(var i=0;i< a.length;i++){
+                if(a[i].photo==fn) return;
+            }
+            function fnTemp(){fn.call(ele)}
+            fnTemp.photo=fn;
+            a.push(fnTemp);
+            ele.attachEvent("on"+type,fnTemp);
+
+        }
+    }
+
+    function unbind(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else if(ele.detachEvent){
+            var a=ele["fnEvent"+type];
+            if(a&& a.length){
+                for(var i=0;i< a.length;i++){
+                    if(a[i].photo==fn){
+                        ele.detachEvent("on"+type,a[i]);
+                        a.splice(i,1);
+                        return;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    var innerHtml="window"
+   function fn1(){
+       alert(this.innerHTML)
+   }
+    function fn2(){
+        alert(2)
+    }
+    var counter=0;
+    function fn3(){
+        counter++;
+        if(counter==3){
+            unbind(this,"click",fn1);
+            unbind(this,"click",fn2);
+        }
+        alert(3);
+    }
+    var ele=document.getElementById("div1");
+    bind(ele,"click",fn1);
+    bind(ele,"click",fn2);
+    bind(ele,"click",fn3)
+
+</script>
+</body>
+</html>

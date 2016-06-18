@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            opacity: 1;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    //当前的起点：100px
+    //让此元素在1000ms内到达900px
+    //当前消耗的时间/规定的总时间=当前走过的路程/总路程
+    //知道的量：
+    //当前消耗的时间（不断累加变化的值）
+    //规定的总时间
+    //起点和终点
+    //
+    //求：当前的位置=运动的距离+起点
+    //当前的位置=（当前消耗的时间/总时间）*总距离+起点
+    animate.getCss=function (ele,attr){
+        //获得ele元素的attr这个css属性的值
+        if(window.getComputedStyle){
+        return   parseFloat(getComputedStyle(ele,null)[attr])
+        }else{
+            if(attr=="opacity"){
+                var value=ele.currentStyle.filter;//取得ie中滤镜样式的值->alpha(opacity=50);
+                var reg=/alpha\(opacity *= *(\d+(?:\.\d+)?)\)/;
+                if(reg.test(value)){
+
+                    return RegExp.$1/100;
+                }else{
+                    return 1;//如果没有写opacity，则把默认值返回
+                }
+            }
+            return parseFloat(ele.currentStyle[attr])
+        }
+    };
+
+animate.setCss=function (ele,attr,value){
+        if(attr=="opacity"){
+            ele.style.opacity=value;
+            ele.style.filter="alpha(opacity="+value*100+")"
+        }else{
+            ele.style[attr]=value+"px";
+        }
+
+    };
+
+
+    function animate(ele,attr,target,duration,callback){
+        //让ele这个元素在规定duration事件内，到达target这个目标，attr指的是在那个纬度发生变化
+        window.clearInterval( ele.timer);
+        var times=0;
+        var interval=15;
+        var begin=arguments.callee.getCss(ele,attr);
+        var change=target-begin;
+
+        function step(){
+          times+=interval;
+            if(times<duration){
+               var value=times/duration*change+begin;
+                animate.setCss(ele,attr,value);
+            }else{
+                animate.setCss(ele,attr,target);
+                window.clearInterval( ele.timer);
+                ele.timer=null;//上一句已经把定时器请掉了，这里还要手动赋null，因为ele.timer上保存的是一个数字，上一句只能清掉队列，但不能清这个返回的数字
+                if(typeof callback=="function"){
+                    callback.call(ele)
+                }
+
+            }
+
+        }
+        ele.timer=window.setInterval(step,interval)
+    }
+
+
+    div1.onclick=function() {
+        if(!this.timer){//通过判断ele.timer可以知道是否在动画中，如果正在执行动画，则ele.timer>=1,则为true，如果ele没有做动画，则ele.timer是undefined或null
+            animate(this, "right", 1000, 2000,function(){fadeInout(this,0,700)});
+
+       }
+        else{
+            clearInterval(this.timer);
+            this.timer=null;
+        }
+    };
+
+    function fadeInout(ele,target,duration,callback){
+        var times=0;
+        var interval=15;
+
+        var begin=animate.getCss(ele,"opacity");
+        var change=target-begin;
+        clearTimeout(ele.timer);
+        function step(){
+            times+=interval;
+            if(times<duration){
+                var val=times/duration*change+begin;
+             ele.style.opacity=val;
+             ele.style.filter="alpha(opacity="+val*100+")";//ie专用
+            }else{
+                ele.style.opacity=target;
+                ele.style.filter="alpha(opacity="+target*100+")"
+                clearInterval(ele.timer);
+                ele.timer=null;
+                if(typeof callback=="function"){
+                    callback.call(ele);
+                }
+            }
+        }
+        ele.timer=window.setInterval(step,interval);
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

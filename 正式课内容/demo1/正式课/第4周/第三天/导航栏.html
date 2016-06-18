@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body{
+            margin:0;padding:0 0 12px 0;font-size:12px;line-height:22px;font-family:"\5b8b\4f53","Arial Narrow";background:#fff;}
+        form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+        input,select{font-size:12px;line-height:16px;}
+        img{border:0;}
+        ul,li{list-style-type:none;}
+        a {color:#00007F;text-decoration:none;}
+        a:hover {color:#bd0a01;text-decoration:underline;}
+
+        .box {
+            width: 150px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        .menu{
+            overflow:hidden;
+            border-color: #C4D5DF;
+            border-style: solid;
+            border-width: 0 1px 1px;
+        }
+        /* lv1 */
+        .menu li.level1 a{
+            display: block;
+            height: 28px;
+            line-height: 28px;
+            background:#EBF3F8;
+            font-weight:700;
+            color: #5893B7;
+            text-indent: 14px;
+            border-top: 1px solid #C4D5DF;
+        }
+        .menu li.level1 a:hover{text-decoration:none;}
+        .menu li.level1 a.current{background:#B1D7EF;}
+        /* lv2 */
+        .menu li ul{overflow:hidden;}
+        .menu li ul.level2{display:none;}
+        .menu li ul.level2 li a{
+            display: block;
+            height: 28px;
+            line-height: 28px;
+            background:#ffffff;
+            font-weight:400;
+            color: #42556B;
+            text-indent: 18px;
+            border-top: 0px solid #ffffff;
+            overflow: hidden;
+        }
+        .menu li ul.level2 li a:hover{
+            color:#f60;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <ul class="menu">
+        <li class="level1">
+            <a href="#none">衬衫</a>
+            <ul class="level2">
+                <li><a href="#none">短袖衬衫</a></li>
+                <li><a href="#none">长袖衬衫</a></li>
+                <li><a href="#none">短袖T恤</a></li>
+                <li><a href="#none">长袖T恤</a></li>
+            </ul>
+        </li>
+        <li class="level1">
+            <a href="#none">卫衣</a>
+            <ul class="level2">
+                <li><a href="#none">开襟卫衣</a></li>
+                <li><a href="#none">套头卫衣</a></li>
+                <li><a href="#none">运动卫衣</a></li>
+                <li><a href="#none">童装卫衣</a></li>
+            </ul>
+        </li>
+        <li class="level1">
+            <a href="#none">裤子</a>
+            <ul class="level2">
+                <li><a href="#none">短裤</a></li>
+                <li><a href="#none">休闲裤</a></li>
+                <li><a href="#none">牛仔裤</a></li>
+                <li><a href="#none">免烫卡其裤</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="../../js/jquery-1.12.1.js"></script>
+<script src="../../../../demo1/正式课/js/Dom.js"></script>
+<script>
+//    $("li.level1>a").click(function(){
+//        var $ul=$(this).next();
+//        if($ul.is(":visible")){//is是判断状态的方法
+//            $ul.hide(700);
+//        }else{
+//            $ul.show(700).parent().siblings().children("ul").hide(700);
+//        }
+//
+//        return false  //阻止事件的默认行为
+//    })
+
+
+    //原生写法
+    var level1s=Dom.getElesByClass("level1");
+    var oAs=[];
+    for (var i=0;i<level1s.length;i++){
+        oAs.push(Dom.children(level1s[i],"a")[0]);
+    }
+
+    for(var i=0;i<oAs.length;i++){
+        var flag=false;
+        oAs[i].onclick=function(){
+
+            if(flag){
+                var oul=Dom.next(this);
+                oul.style.display="none";
+                flag=0
+            }else{
+            //this.nextElementSibling;
+            var oul=Dom.next(this);
+            oul.style.display="block";
+                flag=1;
+            }
+
+
+            //下边让其他菜单项中的ul隐藏
+            var otherLis=Dom.siblings(this.parentNode);
+
+            for(var i=0;i<otherLis.length;i++){
+
+                Dom.children(otherLis[i],"ul")[0].style.display="none"
+            }
+
+            return false;
+        }
+    }
+
+//    var level1s=Dom.getElesByClass("level1");
+//    var oAS=[];
+//    for(var i=0;i<level1s.length;i++){
+//        oAS.push(Dom.children(level1s[i],"a")[0]);
+//    }
+//
+//    for(var i=0;i<oAS.length;i++){
+//        oAS[i].onclick=function(){
+//            var uls=Dom.next(this);
+//            uls.style.display="block";
+//            var otherLi=Dom.siblings(this.parentNode);
+//            var otherUl=[];
+//            for(var i=0;i<otherLi.length;i++){
+//                otherUl.push(Dom.children(otherLi[i],"ul")[0]);
+//            }
+//            for(var i=0;i<otherUl.length;i++){
+//                otherUl[i].style.display="none"
+//            }
+//            return false;
+//        }
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

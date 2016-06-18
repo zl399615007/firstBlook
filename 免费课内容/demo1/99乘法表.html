@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title>99乘法表</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+        #tab {
+            height: 270px;
+            width: 900px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -450px;
+            margin-top: -135px;
+            border: 1px solid aqua;
+            border-radius: 10px;
+        }
+        ul,li{
+            list-style: none;
+        }
+         #tab li{
+            height: 30px;
+            line-height:30px;
+        }
+        #tab li span{
+            height: 30px;
+            width: 100px;
+            text-align: center;
+            display: inline-block;
+
+        }
+        #tab ul{
+            height: auto;
+        }
+        .c1{
+            background-color: green;
+        }
+        .c2{
+            background-color: aqua;
+        }
+        .c3{
+            background-color: red;
+        }
+        .c4{
+            background-color: blue;
+        }
+        .c5{
+            background-color: yellow;
+        }
+        .hovre{
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+<div id="tab">
+    <!--<ul>-->
+        <!--<li><span>1*1=1</span></li>-->
+        <!--<li><span>1*2=2 2*2=4</span></li>-->
+    <!--</ul>-->
+</div>
+
+<script type="text/javascript">
+    var oDiv=document.getElementById("tab")
+    var str="";
+    str+="<ul>";
+        for(var i=1;i<=9;i++){
+            str+="<li>";
+            for(var j=1;j<=i;j++){
+               str+="<span>";
+                str+=""+j+"*"+i+"="+(j*i)+"";
+                str+="</span>";
+            }
+            str+="</li>"
+        }
+    str+="</ul>";
+    oDiv.innerHTML=str
+
+    var oLi=document.getElementsByTagName("li");
+    for(var m=0;m<oLi.length;m++){
+        oLi[m].className="c"+(m%5+1);
+        oLi[m].old = oLi[m].style.backgroundColor;
+        oLi[m].onmouseover = function () {
+            this.style.backgroundColor = "#fff";
+        }
+        oLi[m].onmouseout = function () {
+            this.style.backgroundColor = this.old;
+    }
+
+    }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

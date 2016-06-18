@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #outer{
+            height: 500px;
+            width: 600px;
+            background: #63c;
+        }
+        #middle{
+            padding: 30px;
+            height: 400px;
+            width: 400px;
+            background: #00007F;
+        }
+        #inner{
+            width: 300px;
+            height: 300px;
+            padding: 30px;
+            background: #96c;
+        }
+        #p1{
+            background: yellow;
+            height: 200px;
+            width: 200px;
+        }
+        #span1{
+            display: block;
+            height: 100px;
+            width: 100px;
+            background: salmon;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">outer<br>
+    <div id="middle">middle<br>
+        <div id="inner">inner<br>
+            <p id="p1">ppppppppppppp<br>
+                <span id="span1">span</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    //给本网页中所有元素的click事件都绑定一个方法，当click事件触发时，只弹出这个元素自己的innerHTML的值
+    var eles=document.getElementsByTagName("*");
+//    [].forEach.call(eles,function(ele){
+//        ele.onclick=function(e){
+//            alert(this.id||this.tagName);
+//            e.stopPropagation();
+//        }
+//    });
+
+
+//    for(var i=0;i<eles.length;i++){
+//        eles[i].onclick=function(e){
+//            alert(this.innerHTML);
+//            e.stopPropagation();
+//            //这种方式的核心是：阻止事件的传播
+//        }
+//    }
+
+    document.documentElement.onclick= function (e) {
+        //e.target;//事件源：触发此事件源头
+        e=e||window.event;
+        target= e.target|| e.srcElement;//后者是IE678的事件源
+        alert(target.id)
+    }
+
+</script>
+</body>
+</html>

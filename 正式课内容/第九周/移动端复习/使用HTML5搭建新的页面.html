@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>练习页面</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            color: #000000;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            -webkit-overflow-scrolling: touch;
+            -webkit-text-size-adjust: 100%;
+            -webkit-user-select: none;
+        }
+        header, footer, nav, section, figure, figcaption, aside, article {
+            display: block;
+        }
+        .article{
+            margin: 10px;
+        }
+        .header{
+            height: 80px;
+            background: lightskyblue;
+            margin-bottom: 10px;
+        }
+        .header h1,.header h2{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .header h1{
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+        .header h2{
+            padding: 0 5px;
+            font-size: 15px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .article p{
+            line-height: 18px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .figure{
+            float: left;
+            margin: 10px 10px 10px 0;
+            width: 150px;
+
+        }
+        .figure img{
+            width:100%;
+        }
+        .figure .figcaption{
+            padding-top: 5px;
+            font-size: 11px;
+            color: #999999;
+        }
+
+        @media all and (min-width:960px ) {
+            .article{
+                width: 960px;
+                margin: 10px auto;
+            }
+            .figure{
+                width: 320px;
+            }
+        }
+    </style>
+    <!--[if it IE 9]-->
+    <script src="html5.js"></script>
+    <!--[endif]-->
+</head>
+<body>
+<article class="article">
+    <header class="header">
+        <h1>xxxxxxxxxxxxxx</h1>
+        <h2>xxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h2>
+    </header>
+    <p>xxx xxx xx xxxxxx xxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxx x xxxxx xxxxxxxx
+    </p>
+    <figure class="figure">
+        <img src="b.png" >
+        <figcaption class="figcaption">xxxxxxxx</figcaption>
+    </figure>
+<p>xxx xxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxx xxxxxx xxxxxx xxxxxxxx xxxxxx xxxxxxxxxxx
+    </p><p>xxx xx xxxxxx xxxxxx xxxx xxxx xxxxxx xxxx xx xxxx xxx xxxxxxxxx x xxx xx xxx xx xxx xxx xxxxxx
+    </p>
+</article>
+
+</body>
+</html>

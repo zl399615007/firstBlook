@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        .tabbedpannels {
+            overflow: hidden;
+            width: 600px;
+            margin: 40px auto;
+
+        }
+
+        .tabbedpannels ul.tabGroup {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabbedpannels li.tab {
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            float: left;
+            background: lightblue;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .tabbedpannels div.content {
+            clear: both;
+            height: 200px;
+            width: 600px;
+            background: #cccccc;
+            display: none;
+        }
+
+        .tabbedpannels div.content.selectedContent {
+            display: block;
+            background: darkgoldenrod;
+        }
+
+        .tabbedpannels li.tab.selectedTab {
+            background: darkgoldenrod;
+            font-weight: bold;
+        }
+
+        .promoted {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="tabbedpannels">
+    <ul class="tabGroup" >
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+        <!--<ul>-->
+        <!--<li>js</li>-->
+        <!--<li>html</li>-->
+        <!--</ul>-->
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab  promoted">2</li>
+        <li class="tab ">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+</body>
+<script src="../../js/jquery-1.12.1.js"></script>
+<script>
+    //jquery有三个筛选方法：filter同级筛选，children子元素筛选，find后代元素中筛选
+
+
+    //jquery的链式写法：每个方法都会返回下一次执行的方法的上下文（这个上下文都是jQuery的实例）
+    //第一步：javascript Query，首先就是查找DOM元素，和document.querySelectorAll的风格一样，是css选择器的风格
+    $(".tab").click(function(){//把click方法里的匿名方法，绑定给所有的类名叫tab的元素，这里面会对应一个隐式循环(隐式循环非常常用)
+        $(this).addClass("selectedTab").siblings().removeClass("selectedTab");
+
+    var index=$(this).index();//相当于DOM库里的getIndex方法
+        this.parentNode.nextElementSibling.children[index];
+        var $content=$(this).parent().next().children().eq(index);
+        $content.addClass("selectedContent").siblings().removeClass("selectedContent")
+    });
+
+/*
+* 1.jQuery的首要功能是查找DOM元素，它的入口方法是jQuery，简写为$
+* 2.$的参数类型：
+* $("选择器格式的字符串")
+* $("HTML格式的字符串")
+* $(DOM对象)//把DOM原生对象转化为jQuery对象
+* $("选择器格式的字符串"，context)
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* */
+
+</script>
+</html>

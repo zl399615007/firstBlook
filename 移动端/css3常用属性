@@ -1,0 +1,66 @@
+变形属性的方法（2D/3D）
+2D:
+transform:rotate(45deg)旋转
+trasform:skew(15deg,45deg)倾斜
+transform:scale(1);默认值是1， 1以上放大，1以下缩小
+transform:translate(x,y)  性能好，可以减少回流和重绘
+tarnsform-origin:(top/right/left/ bottom)设置基准点
+
+3D：
+transform-style:preserve-3d  设置元素在3D空间展示（作用在父元素上）
+perspective:800px   视距500-2000px 3D效果呈现最佳作用在父元素上）
+transform:perspective(800px)  作用在子元素上
+transform:rotateX() 3D旋转-X轴
+transform:rotataY() 3D旋转-Y轴
+transform:rotataZ() 3D旋转-Z轴 远小近大
+
+css动画：transition/animation 配合keyframes
+animation.css（动画库）
+
+transition-property:属性
+transition-duration:动画执行的时间
+transition-timing-function：动画类型
+transition-delay:延迟执行时间
+
+@keyframes 关键帧动画名称
+0%{}
+50%{}
+100%{}
+animation-name
+animation-duration
+animation-timing-function
+animation-delay
+...
+
+
+
+:nth-child(even)
+:nth-of-type(old)
+:empty()
+:not()
+:last-child
+:target
+:before
+:after
+
+box-shadow
+text-shadow
+background-size
+box-sizing:content-box（标准模式）/boxder-box（混杂模式，可以防止内容溢出）/padding-box(仅火狐支持)
+
+
+if("createTouch" in document)
+
+
+
+类库：
+zepto
+touch
+fullpage
+
+框架
+swiper
+
+
+
+

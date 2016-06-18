@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+		<input type='button' id="cunzhi" value='存值'/>
+		<input type='button' id="quzhi" value='取值'/>
+		<input type='button' id="shanchu" value='删除'/>
+	<script type="text/javascript">
+		var user={
+			name:"xiaoming",
+			age:2,
+			home:"china"
+		}
+		var storage_value=document.getElementById("cunzhi"),
+				get_value=document.getElementById("quzhi"),
+			 delete_value=document.getElementById("shanchu");
+		function Local_storage(){
+			this.set_item=function(user){
+				this.user=user;
+				localStorage.setItem('userinfo',JSON.stringify(user));
+				
+			}
+			this.get_item=function(){
+			 	var data = JSON.parse(localStorage.getItem('userinfo'));
+			 	alert("name:"+data.name+"\n age:"+data.age+"\n home:"+data.home);
+			}
+			this.delete_item=function(){
+				localStorage.removeItem('userinfo');
+				alert(localStorage.getItem('userinfo'));
+			}	
+		}
+		var localer=new Local_storage();
+	
+		storage_value.onclick=function(){
+			localer.set_item(user);
+		}
+		get_value.onclick=function(){
+			localer.get_item();
+		}
+		delete_value.onclick=function(){
+			localer.delete_item();
+		}
+		
+	</script>
+</html>

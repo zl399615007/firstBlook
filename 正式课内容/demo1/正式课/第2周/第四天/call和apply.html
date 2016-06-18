@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    "use strict";//->告诉当前浏览器接下来的js代码将按照严格模式进行编写
+    var ary=[1,2,3,4];
+    //ary.slice->ary这个实例通过原型链的查找机制找到Array.prototype上的slice方法
+    //ary.slice()->让找到的slice方法执行，在执行slice方法的过程中，才把ary数组进行了截取
+
+    //自己模拟内置的call方法，写一个mycall方法，深入探讨call方法的执行原理
+    Function.prototype.mycall=function(context){
+        //mycall方法中的this就是当前我要操作和改变其this关键字的那个函数名
+        //->1、让fn中的this关键字变为context的值
+        //让this这个函数中的“this关键字变成context”
+        //eval(this.toString().replace("this","context"));
+        //->2、让fn方法执行
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        .tabbedpannels {
+            overflow: hidden;
+            width: 600px;
+            margin: 40px auto;
+
+        }
+
+        .tabbedpannels ul.tabGroup {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabbedpannels li.tab {
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            float: left;
+            background: lightblue;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .tabbedpannels div.content {
+            clear: both;
+            height: 200px;
+            width: 600px;
+            background: #cccccc;
+            display: none;
+        }
+
+        .tabbedpannels div.content.selectedContent {
+            display: block;
+            background: darkgoldenrod;
+        }
+
+        .tabbedpannels li.tab.selectedTab {
+            background: darkgoldenrod;
+            font-weight: bold;
+        }
+
+        .promoted {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="tabbedpannels">
+    <ul class="tabGroup" >
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+        <!--<ul>-->
+        <!--<li>js</li>-->
+        <!--<li>html</li>-->
+        <!--</ul>-->
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab  promoted">2</li>
+        <li class="tab ">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+<div class="tabbedpannels">
+    <ul class="tabGroup">
+        <li class="tab selectedTab">1</li>
+        <li class="tab promoted">2</li>
+        <li class="tab">3</li>
+    </ul>
+    <div class="contentGroup">
+        <div class="content selectedContent">内容一</div>
+
+        <div class="content">内容二</div>
+        <div class="content">内容三</div>
+    </div>
+</div>
+</body>
+<script src="../../js/jquery-1.12.1.js"></script>
+<script src="../../js/Dom.js"></script>
+<script>
+    function changeTab(){
+        $(this).addClass("selectedTab").siblings().removeClass("selectedTab");
+        var index=$(this).index();//返回的是一个数字，不能继续用链式写法
+        $(this).parent().next().children().eq(index).addClass("selectedContent").siblings().removeClass("selectedContent");
+        //eq相当于item,获得索引号指定的某一项，它返回的是jQuery对象
+        //get也是返回指定的索引号元素，返回的是原生DOM对象
+    }
+
+$("li.tab").click(changeTab);
+//jQuery是用方法来绑定，不是原生js里的给属性赋值
+
+
+
+</script>
+
+</body>
+</html>

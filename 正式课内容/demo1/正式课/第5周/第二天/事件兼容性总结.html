@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+1.事件对象不一样：IE是全局的window.event;标准浏览器是当事件触发时自动传给绑定在此事件上的方法中的arguments[0];
+2.pagex,pageY这两个属性IE不支持(差一个scrollLeft)
+3.事件源不一样：e.target||e.srcElment
+4.事件取消传播的方法不同：e.stopPropagation(),IE用e.cancelBubble=true
+5.阻止事件默认行为的方法不同：e.preventDefault();IE用e.returnValue=false;
+6.最大的兼容性问题DOM2级事件中
+（1）绑定事件的方法不一样
+（2）在IE中被绑定方法执行时的this指向不一样
+（3）在IE中被绑定方法执行时的顺序不一样
+（4）IE中一个方法可以被重复绑定
+
+setCapture
+观察者模式用来解决什么问题
+window.onload和document.ready的区别
+
+
+DOM2级事件的优势
+DOMcontentnode
+
+<script>
+
+</script>
+</body>
+</html>

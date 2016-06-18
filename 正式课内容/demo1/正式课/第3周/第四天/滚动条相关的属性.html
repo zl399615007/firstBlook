@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height: 200px;
+            width: 150px;
+            background: #cccccc;
+            overflow: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="div1" style="overflow: hidden">康社会的奋斗目标能否顺利实现。2016年3月8日，习近平在参加十二届全国人大四次会议湖南代表团审议时指出：“今明两年，全国省市县乡要陆续换届，要深刻吸取湖南衡阳破坏选举案和四川南充拉票贿选案的教训，以‘零容忍’的政治态度、规范严谨的法定程序、科学有效的工作机制、严肃认真的纪律要求，坚决杜绝此类现象发生。”习近平正以“零容忍”“零懈怠”根除贿选“阴霾”，保证换届的风清气正。请随“学习中国”小编一起学习。</div>
+<script>
+    var ele=document.getElementById("div1");
+    //ele.scrollTop的几个特点
+    //1.内容向上翻出去的高度
+    //2.可以读写
+    //3.有上限和下限
+
+    ele.onscroll=function(){
+        console.log(this.scrollTop);
+    };
+
+    ~(function(){
+        ++div1.scrollTop > div1.scrollTop ? div1.innerHTML += div1.innerHTML : null;
+
+//        ele.scrollTop++;
+//        if(ele.scrollHeight-ele.clientHeight==ele.scrollTop){
+//            //ele.scrollTop=0;
+//            ele.innerHTML+=ele.innerHTML;
+//        }
+//        var t=ele.scrollTop;
+//        ele.scrollTop++;
+//        if(t==ele.scrollTop){
+////        if(t==(++ele.scrollTop)){//这种写法错误，++后的值不变
+//            ele.innerHTML+=ele.innerHTML;
+//        }
+        window.setTimeout(arguments.callee,10);//arguments.callee函数本身arguments.callee.caller函数被谁调用
+
+    })();
+</script>
+</body>
+</html>

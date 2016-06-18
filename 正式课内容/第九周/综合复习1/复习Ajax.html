@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery-1.12.1.js"></script>
+<script>
+    //1.ajax/jsonp是干啥的
+    //通过Ajax/jsonp从后台获取数据（后台需要给我们一个URL地址（API接口），我们通过地址找到对应的后台，把需要的数据获取到即可）；获取到数据后分析数据和做页面的数据绑定
+
+    //2.Ajax是同源请求，JSONP是非同源请求（跨域）
+    //同源/跨域：协议、域名、端口号一模一样是同源，只要有一个不一样就是跨域
+
+
+    //3.如何用
+    //Ajax->
+//    $.ajax({
+//        url:"banner.txt?_="+Math.random(),
+//        type:"get",
+//        dataType:"text",//->请求回来的数据
+//        async:true,
+//        success:function (data) {//请求成功后执行，第一个参数是请求回来的值
+//                alert(data)
+//        }
+//    });
+
+    //跨域
+//    $.ajax({
+//        url:"http://matchweb.sports.qq.com/kbs/calendar?columnId=100000?_="+Math.random(),
+//        type:"get",
+//        dataType:"jsonp",//->这里改成jsonp就能跨域了
+//        async:true,
+//        success:function (data) {//请求成功后执行，第一个参数是请求回来的值
+//            console.log(data)
+//        }
+//    });
+
+    //jsonp->利用script标签不存在跨域，我们把后台的URL地址放在src中，并且传递一个callback=方法名，后台接收到请求后把callback后面的方法获取到，并且把这个方法给执行了，并且给这个方法传递了一些数据，这些数据就是需要获取的数据
+
+    //把url参数解析成一个对象
+    var str="www.zhufengpeixun.cn?coursel=js&course=css";
+    function fn(str) {
+        var obj={};
+        var aCourse=str.split('?')[1].split('&');
+        for(var i=0;i<aCourse.length;i++){
+
+            var currcou=aCourse[i].split('=');
+            obj[currcou[0]]=currcou[1];
+        }
+        return obj;
+    }
+    console.log(fn(str));
+
+</script>
+</body>
+</html>

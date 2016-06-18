@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <div>
+        <div id="content">
+            文字。。，，！！、、
+        </div>
+    多余内容
+</div>
+</div>
+
+
+<script>
+    var innerHTML=document.body.innerHTML;
+    //var reg=/<div +id=(["'])content\1 *>([\w\W]+?)<\/div>/;
+//    var reg=/<div +id=(["'])content\1 *>([\w\W]+?)<\/div>/;
+    var reg=/<div +id=(["'])content\1 *>([\w\W]+?)<\/div>/;
+    console.log(reg.exec(innerHTML));
+</script>
+</body>
+</html>

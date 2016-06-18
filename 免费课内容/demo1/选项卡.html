@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #pid {
+            width: 500px;
+            margin: 20px auto;
+        }
+
+        #pid ul li {
+            float: left;
+            border: 1px solid aqua;
+            height: 50px;
+            width: 70px;
+            line-height: 50px;
+            text-align: center;
+            margin: 1px;
+            cursor: pointer;
+            border-radius: 10px;
+            position: relative;
+            top: -1px;
+        }
+
+        #pid div {
+            clear: both;
+            display: none;
+            height: 150px;
+            background-color: #08BECE;
+            text-align: center;
+            line-height: 150px;
+            border: 1px;
+        }
+
+        #pid ul li.select {
+            background-color: red;
+        }
+
+        #pid div.select {
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="pid">
+    <ul>
+        <li class="select">电影</li>
+        <li>动漫</li>
+        <li>综艺</li>
+        <div class="select">电影内容</div>
+        <div>动漫内容</div>
+        <div>综艺内容</div>
+    </ul>
+</div>
+<script type="text/javascript">
+    var oPid = document.getElementById("pid");
+    var oLis = oPid.getElementsByTagName("li");
+    var oDivS = oPid.getElementsByTagName("div");
+    //    function tabchange(n) {
+    //        for (var i = 0; i < oLis.length; i++) {
+    //            oLis[i].className = "";
+    //            oDivS[i].className = "";
+    //        }
+    //            oLis[n].className="select";
+    //            oDivS[n].className="select"
+    //    }
+    //for(var j=0;j<oLis.length;j++) {
+    //    oLis[j].ob = j
+    //    oLis[j].onmousemove = function () {
+    //        tabchange(this.ob)
+    //    }
+    //}
+    for (var i = 0; i < oLis.length; i++) {
+        var oli = oLis[i];
+        oli.ob = i;
+        oli.onmouseover = function () {
+            for (var j = 0; j < oLis.length; j++) {
+                oLis[j].className = "";
+                oDivS[j].className = "";
+            }
+            this.className = "select";
+            oDivS[this.ob].className = "select"
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

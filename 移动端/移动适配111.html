@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+           height: 100%;
+            overflow: hidden;
+        }
+        #main{
+            width: 640px;
+            height: 960px;
+            position: absolute;
+            left:50%;
+            top:0;
+            margin-left: -320px;
+            transform-origin: top;
+            -webkit-transform-origin: top;
+        }
+        #list{
+            width: 100%;
+            height: 100%;
+        }
+        #list li{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #list li:nth-child(1){
+            background:url(images/b.png) no-repeat;
+        }
+        #list li:nth-child(2){
+            background:url(images/c.png) no-repeat;
+        }
+        #list li:nth-child(3){
+            background:url(images/d.png) no-repeat;
+        }
+        #list li:nth-child(4){
+            background:url(images/e.png) no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <ul id="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var main = document.querySelector("#main");
+    var oLis=document.querySelectorAll("#list>li");
+    var oUl=document.querySelector("#list");
+    var winW = document.documentElement.clientWidth ;//设备的宽
+    var winH = document.documentElement.clientHeight;//设备的高
+    var desW = 640;
+    var desH = 960;
+    if(winW/winH<desW/desH){
+        main.style.webkitTransform = "scale("+winH/desH+")"
+    }else{
+        main.style.webkitTransform = "scale("+winW/desW+")"
+    };
+    [].forEach.call(oLis,function () {
+        var oLi=arguments[0];
+        oLi.index=arguments[1];
+        oLi.addEventListener("touchstart",start,false);
+        oLi.addEventListener("touchmove",move,false);
+        oLi.addEventListener("touchend",move,false);
+    });
+
+    function move(e) {
+        this.flag=true;
+        var movex=e.changedTouches[0].pageY;
+        this.pos=movex-this.startY;
+        var movepos=this.offsetHeight*this.index;
+        var mpos=-movepos+this.pos;
+        oUl.style.webkitTransform="translate(0,"+mpos+"px)";
+    }
+    function end(e) {
+        if(this.flag){
+            var index=this.index;
+            var len=oLis.length;
+            if(this.pos>0){
+                this.prevsIndex=index==0?0:index-1;
+            }else if(this.pos<0){
+                this.prevsIndex=index==len-1?len-1:index+1;
+            }
+            var movePos=-this.offsetHeight*this.prevsIndex;
+            oUl.style.webkitTransform="translate(0,"+movePos+"px)";
+            oUl.style.webkitTransition="0.7s";
+            var _this=this;
+            oUl.addEventListener("webkitTransitionEnd",function () {
+                this.style.webkitTransition="";
+            },false)
+        }
+        this.flag=false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

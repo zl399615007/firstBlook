@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function EventEmitter(){
+
+    };
+    EventEmitter.prototype.on=function (type,fn){
+        if(!this["emitter"+type])this["emitter"+type]=[];
+        var a=this["emitter"+type];
+        for(var i=0;i< a.length;i++){
+            if(a[i]==fn)return;
+        }
+        a.push(fn);
+    };
+
+    EventEmitter.prototype.run=function(type){//通知发布
+        var a=this["emitter"+type];
+        if(a){
+            for(var i=0;i< a.length;i++){
+                if(typeof a[i]=="function")
+                a[i].call(this);
+                else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+    };
+
+    EventEmitter.prototype.off=function (type,fn) {
+        var a = this["emitter" + type];
+        if (a) {
+            for (var i = 0; i < a.length; i++) {
+                if(a[i]==fn){
+                    a[i]=null;
+                    return;
+                }
+            }
+        }
+    };
+
+    function Pot(){
+
+    }
+   // Pot.prototype=new EventEmitter;
+    Pot.prototype.__proto__=EventEmitter.prototype; //继承EventEmitter类
+    Pot.prototype.abc=function(){
+        var that=this;
+        window.setTimeout(function(){
+            console.log("aaaaa");
+            that.run("abc");
+        },3000)
+    };
+    var a=new Pot;
+    a.abc();
+    function show(){
+        console.log("洗澡")
+    }
+    function noodles(){
+        console.log("泡面")
+    }
+    a.on("abc",show);
+    a.on("abc",noodles);
+
+    a.abc();
+</script>
+</body>
+</html>

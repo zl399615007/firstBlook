@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+       ul,li{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 18px;
+            text-align:center;
+        }
+       li{
+           padding: 10px;
+           margin: 10px;
+           border: 1px solid #cccccc;
+       }
+        .bg1{
+            background: pink;
+        }
+        .bg2{
+            background: green;
+        }
+        .bg3{
+
+        }
+
+
+    </style>
+</head>
+<body>
+<ul id="Ul1">
+    <li>aaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+    <li>bbbbbbbbbbbbbbbbbbbbbbbbbb</li>
+    <li>cccccccccccccccccccccccccc</li>
+    <li>dddddddddddddddddddddddddd</li>
+    <li>eeeeeeeeeeeeeeeeeeeeeeeee</li>
+    <li>fffffffffffffffffffffffff</li>
+    <li>ggggggggggggggggggggggggggggggggggggggggg</li>
+</ul>
+<script>
+    var Ul1=document.getElementById("Ul1");
+    var oLis=Ul1.getElementsByTagName("li");
+    for(var i=0;i<oLis.length;i++){
+        if(i%2==0){
+            oLis[i].className="bg1";
+        }else{
+            oLis[i].className="bg2";
+        }
+
+        oLis[i].old=oLis[i].className;
+        oLis[i].onmousemove=function(){
+            this.className="bg3";
+        };
+
+        oLis[i].onmouseout=function(){
+            this.className=this.old;
+        };
+    }
+
+</script>
+
+</body>
+</html>

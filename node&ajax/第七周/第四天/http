@@ -1,0 +1,77 @@
+学好http->快速掌握ajax，快速排查错误
+http(超文本传输协议)：是一个事务（事务由n+1个事件组成，只有所有的事件都完成之后，这个事务才算完成）
+http包含 requset和response两个事件，所以只有当request和response都完成之后这个http才算都完成
+
+request和response都包含报文
+一）报文的格式：
+1、起始行
+请求的起始行：http方法（服务器就是通过这个知道请求的方法）、request url(请求的路径)、http版本号（因为http有0.9,1.0,1,2.0等4个版本，所以必须标会http的版本号）
+响应的起始行：http版本号（必须和请求的版本号一样）、状态码、状态码描述符
+
+2、首部（用来描述http特征以及附属信息）
+固定格式 KEY:VALUE1，VALUE2...
+
+3、主体（数据的承载）
+请求的主体->给服务器发送的数据
+
+响应的主体->服务器响应给浏览器的数据
+
+二）http状态码（用来描述http响应的状态）
+1xx 初始信息 101（浏览器发送请求后，还没有收到http响应）
+2xx 客户端成功 200 ok,202 accepted接受
+3xx 重定向 301永久转移、302临时转移、304  modified 走缓存
+4xx 客户端错误 400 bad request参数错误、401未认证、403禁止访问，没有权限、404没找到
+5xx 服务器错误  500服务器内部错误  503服务器压力过大，并发过多
+
+三）http方法（http请求的方式）
+GET 从服务器获取数据，特点：1、没有请求体，把参数都放到url里。 2、十分容易被浏览器缓存。 3、因为把参数都放到url里，而浏览器对url的长度有限制，所以造成get方法有大小限制。（chrome 8k/firefox 7k/ie 2k） 4、明文发送，不安全
+
+POST 往服务器发送数据
+特点：
+1、有请求体，把给服务器传输的数据都放到请求体里。 2、永远不会被缓存。 3、数据放在请求体里，而请求体没有大小限制，所以post没有大小限制。 4、非明文发送，可以发送私密数据。
+
+DELETE 告诉服务器删除某个数据 特点：1、特点和get一模一样。 2、成功的响应码为202
+
+HEAD 只返回响应起始行和响应首部，不返回响应主体 特点：1、除了不会被缓存，其他和get一模一样。 2、没有响应主体。3、应用场景：同步服务器时间、秒杀、下载之前，获取下载的文件有多大
+
+PUT 往服务器推送数据 特点：1、和post一模一样。 2、成功的响应码为202
+
+OPTIONS 检索服务器都支持哪些http方法，并将结果放到响应首部中，不需要返回响应主体
+特点：1、只是用来检索服务器支持哪些http方法。 2、没有响应主体。
+
+为什么要设计这么多方法：固定的方法做固定的事。
+CRUD(增删改查）：增：post 删：delete 改：put 查：get 服务器只要得到http的方法，就可以知道要执行什么操作。但是有个前提条件：先用options方法检查下服务器是不是支持这些http方法。这种架构就叫 restful 表征状态转移
+
+四）URL的方案（标识url通过此方案去请求server）
+http 默认端口80，最常见的传输协议
+https 默认443 http+SSL/TSL（非对称加密RSA算法）
+smtp 邮件系统
+ftp 文件传输协议
+file 本地文件，该方案无法执行ajax请求（因为ajax是基于http的，http是基于网络的，而本地硬盘是没有网络的，所以无法执行ajax）
+
+
+什么是mimeType?
+告诉浏览器以什么格式去解析这段数据,只要通过http获取的资源，100%会有mimeType
+通过navigator.mimeTypes获取当前浏览器支持哪些mimeType
+固定格式 大类型/小类型  charset=xxx(只有大类型为text的时候，charset才生效，charset用来表示这段内容是什么编码格式)
+json  application/json
+二进制流  application/octct-stream
+表单提交   application/xwww-form-urlencode
+
+
+
+
+网络七层协议：
+1.物理层 ->网卡
+2.链路层 ->网络驱动
+3.网络层 ->ip
+4.传输层 ->TCP/UDP 传输协议
+5.会话层 ->msi 系统层面做，保持会话 断开会话
+6.表现层 ->加密 解密（非对称加密/对称加密）
+7.应用层 ->http https ftp smtp telnet
+
+http://www.nowcoder.com/ta/front-end-interview
+
+http://www.nowcoder.com/ta/js-assessment
+
+http://perfectionkills.com/javasc

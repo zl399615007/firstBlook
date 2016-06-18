@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            background:darkturquoise ;
+            padding: 10px;
+            border: 1px dashed #cccccc;
+            font-size: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #span1{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1">距离下课还有<span id="span1">00:00:00</span></div>
+
+<script>
+
+    var oSpan=document.getElementById("span1");
+    var oDiv=document.getElementById("div1");
+    function getCountTime(){
+        var now=new Date();
+        var cur=new Date("2016/2/28 18:00:00");
+        //1.创建这两个时间对象相差多少毫秒
+        var spanTime=cur.getTime()-now.getTime();
+        //2.相差的毫秒数里有多少小时
+        var hour=Math.floor(spanTime/(60*60*1000));
+
+        spanTime=spanTime-(hour*60*60*1000);//剩余多少毫秒数
+        //3.剩余的毫秒数里有多少分钟
+        var minute=Math.floor((spanTime/(60*1000)));
+        spanTime=spanTime-(minute*60*1000);
+
+        //4.剩余的毫秒数里有多少秒
+        var second=Math.floor(spanTime/1000);
+        oSpan.innerHTML=zero(hour)+":"+zero(minute)+":"+zero(second);
+
+
+    }
+    function zero(value) {
+        return value < 10 ? "0" + value : value;
+    }
+        getCountTime();
+
+
+
+    //如果timer值是null就说明没有定时器的存在，计算时间也就停止了
+    //timer值不是null，说明定时器正在运行着，我们得清除定时器并且把timer的值设成null，为了方便 下一次判断这个定时器是否被清除掉
+    var timer=window.setInterval(getCountTime,1000);//
+    function togglerClock(){
+        if(timer){
+            window.clearInterval(timer);
+        }else{
+            timer=window.setInterval(getCountTime,1000);
+        }
+    }
+    oDiv.onclick=togglerClock;
+
+
+
+
+
+</script>
+</body>
+</html>

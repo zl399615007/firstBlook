@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">1</div>
+<script>
+    //给ele元素的type事件绑定fn
+    function bind(ele,type,fn){
+       if( addEventListener(type,fn,false)){
+            ele.addEventListener(type,fn,false);
+        }else if(ele.attachEvent){
+            ele.attachEvent("on"+type,fn)
+        }
+    };
+
+    function unbind(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else if(ele.detachEvent){
+            ele.detachEvent("on"+type,fn);
+        }
+
+    }
+    function fn1(){
+        alert("2")
+    }
+    function fn2(){
+        alert(this.innerHTML)
+    }
+    var counter=0;
+    function fn3(){
+
+    }
+bind(div1,"click",fn1);
+bind(div1,"click",fn2)
+</script>
+</body>
+</html>

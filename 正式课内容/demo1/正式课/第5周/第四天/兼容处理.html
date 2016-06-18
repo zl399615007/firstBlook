@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    if(typeof event.pageX=="undefined"){
+//        event.pageX=(document.documentElement.scrollTop||document.body.scrollTop)+event.clientX;
+//        event.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+event.clientY
+
+    var a=[1,2,3,9]
+    var sum= a.reduce(function(x,y){
+        return (x<y)?x:y
+    })
+    console.log(sum);
+</script>
+</body>
+</html>

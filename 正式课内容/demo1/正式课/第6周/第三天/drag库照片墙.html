@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        ul,li{ margin:0; padding:0; list-style:none; }
+        ul{ margin:50px auto; width:480px; height:640px; background:#9CF; position:relative;}
+        li{ width:150px; height:150px; margin:5px; float:left; overflow:hidden; background:#66C; cursor:move; -webkit-user-select:none; }
+        img{ width:150px; height:150px;}
+
+
+    </style>
+</head>
+<body>
+<ul id="photolist">
+    <li><img src="img/1.png" alt="1"/></li>
+    <li><img src="img/2.png" alt="2"/></li>
+    <li><img src="img/3.png" alt="3"/></li>
+    <li><img src="img/4.png" alt="4"/></li>
+    <li><img src="img/5.png" alt="5"/></li>
+    <li><img src="img/6.png" alt="6"/></li>
+    <li><img src="img/7.png" alt="7"/></li>
+    <li><img src="img/8.png" alt="8"/></li>
+    <li><img src="img/9.png" alt="9"/></li>
+    <li><img src="img/10.png" alt="10"/></li>
+    <li><img src="img/11.png" alt="11"/></li>
+    <li><img src="img/12.png" alt="12"/></li>
+
+</ul>
+<script src="../../js/event.js"></script>
+<script src="../../js/drag.js"></script>
+<script src="../../js/animate.js"></script>
+<script>
+    var eles=document.getElementsByTagName("li");
+    for(var i=eles.length-1;i>=0;i--){
+        var ele=eles[i];
+        ele.style.left=(ele.l=ele.offsetLeft)+"px";
+        ele.style.top=(ele.t=ele.offsetTop)+"px";
+        ele.style.margin=0;
+        ele.style.position="absolute";
+        new Drag(ele).on("dragstart",increaseIndex).on("dragging",saveHited).on("dragend",backcolor).on("dragend",changePosition).border();
+    }
+
+    var zIndex=1;
+    function increaseIndex(){
+        this.ele.style.zIndex=++zIndex;
+    };
+
+    function goBack(){
+        animate(this.ele,{left:this.ele.l,top:this.ele.t},700,4)
+    }
+
+    function hitedTest(r,b){
+        return !(r.offsetLeft+ r.offsetWidth< b.offsetLeft|| r.offsetTop+ r.offsetHeight< b.offsetTop|| r.offsetLeft> b.offsetLeft+ b.offsetWidth|| r.offsetTop> b.offsetTop+ b.offsetHeight);
+
+    };
+
+    function saveHited(){
+        this.aHited=[];
+        for(var i=0;i<eles.length;i++){
+            var obj=eles[i];
+            if(obj==this.ele)continue;
+            obj.style.backgroundColor="";
+            if(hitedTest(this.ele,obj)){
+                this.aHited.push(obj);
+                obj.style.backgroundColor="yellow";
+            }
+        }
+    };
+
+    function changePosition(){
+        var a=this.aHited;
+        if(a&& a.length){
+            for(var i=0;i< a.length;i++){
+                var obj=a[i];
+                obj.hitedLength=Math.sqrt(Math.pow(this.ele.offsetLeft-obj.offsetLeft,2)+Math.pow(this.ele.offsetTop-obj.offsetTop,2));
+            }
+            a.sort(function (a,b){return a.hitedLength- b.hitedLength
+            });
+            var shortest=a[0];
+            shortest.style.backgroundColor="black";
+            animate(shortest,{left:this.ele.l,top:this.ele.t},700,3);
+            animate(this.ele,{left:shortest.l,top:shortest.t},700,4);
+            var templ=this.ele.l;
+            var tempt=this.ele.t;
+            this.ele.l=shortest.l;
+            this.ele.t=shortest.t;
+            shortest.l=templ;
+            shortest.t=tempt;
+        }else{
+            animate(this.ele,{left:this.ele.l,top:this.ele.t},700,3);
+        }
+    }
+
+function backcolor(){
+    for(var i=0;i<eles.length;i++){
+        eles[i].style.backgroundColor="";
+    }
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

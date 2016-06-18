@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        ul,li{ margin:0; padding:0; list-style:none; }
+        ul{ margin:50px auto; width:480px; height:640px; background:#9CF; position:relative;}
+        li{ width:150px; height:150px; margin:5px; float:left; overflow:hidden; background:#66C; cursor:move; -webkit-user-select:none; }
+        img{ width:150px; height:150px;}
+
+
+    </style>
+</head>
+<body>
+<ul id="photolist">
+    <li><img src="img/1.png" alt="1"/></li>
+    <li><img src="img/2.png" alt="2"/></li>
+    <li><img src="img/3.png" alt="3"/></li>
+    <li><img src="img/4.png" alt="4"/></li>
+    <li><img src="img/5.png" alt="5"/></li>
+    <li><img src="img/6.png" alt="6"/></li>
+    <li><img src="img/7.png" alt="7"/></li>
+    <li><img src="img/8.png" alt="8"/></li>
+    <li><img src="img/9.png" alt="9"/></li>
+    <li><img src="img/10.png" alt="10"/></li>
+    <li><img src="img/11.png" alt="11"/></li>
+    <li><img src="img/12.png" alt="12"/></li>
+
+</ul>
+<script src="../../js/event.js"></script>
+<script src="../../js/drge1.js"></script>
+<script src="../../js/animate.js"></script>
+<script>
+    var oLis=document.getElementsByTagName("li");
+        for(var i=oLis.length-1;i>=0;i--){//一旦绝对定位，元素则脱离标准流，则会发生图片叠加的情况
+            var oLi=oLis[i];
+            oLi.l=oLi.offsetLeft;
+            oLi.t=oLi.offsetTop;
+            oLi.style.left=oLi.l+"px";
+            oLi.style.top=oLi.t+"px";
+            oLi.style.position="absolute";
+            oLi.style.margin=0;
+            on(oLi,"mousedown",down);
+            on(oLi,"selfdragstart",increaseIndex);
+            on(oLi,"selfdragging",getHitedEle);
+            on(oLi,"selfdragend",restore);
+            on(oLi,"selfdragend",changePosition);
+
+        }
+
+
+    var zIndex=1;
+    function increaseIndex(){
+        this.style.zIndex=++zIndex;
+        this.style.backgroundColor="red"
+    }
+    function restore(){
+        this.style.backgroundColor="";
+    }
+    function remove(){
+        animate(this,{left:this.l,top:this.t},400,4)
+    }
+
+    function isHited(r,b){
+        if(r.offsetLeft+ r.offsetWidth< b.offsetLeft|| r.offsetTop+ r.offsetHeight< b.offsetTop|| r.offsetLeft> b.offsetLeft+ b.offsetWidth|| r.offsetTop> b.offsetTop+ b.offsetHeight){
+            return false;
+        }
+        return true;
+    };
+
+
+    function getHitedEle(){
+        this["aHitedEle"]=[];
+        for(var i=0;i<oLis.length;i++){
+            var oLi=oLis[i];
+            if(this==oLi)continue;
+            oLi.style.backgroundColor="";
+            if(isHited(this,oLi)){
+                oLi.style.backgroundColor="orange";
+                this["aHitedEle"].push(oLi);
+            }
+        }
+    };
+
+    function changePosition(){
+        var a=this["aHitedEle"];
+        if(a&& a.length){
+            var oMin={};
+            for(var i=0;i< a.length;i++){
+                var oLi=a[i];
+                if(!oMin.ele) {
+                    oMin.min =Math.sqrt(Math.pow(this.offsetLeft - oLi.offsetLeft, 2) + Math.pow(this.offsetTop - oLi.offsetTop, 2));
+                    oMin.ele = oLi;
+                }else{
+                    var distance=Math.sqrt(Math.pow(this.offsetLeft - oLi.offsetLeft, 2) + Math.pow(this.offsetTop - oLi.offsetTop, 2));
+                    if(oMin.min>distance){
+                        oMin.min=distance;
+                        oMin.ele=oLi;
+                    }
+                }
+            }
+           // oMin.ele.style.left=this.l+"px";
+           // oMin.ele.style.top=this.t+"px";
+           // this.style.left=oMin.ele.l+"px";
+           // this.style.top=oMin.ele.t+"px";
+            var ele=oMin.ele;
+            animate(ele,{left:this.l,top:this.t},600,4);
+            animate(this,{left:ele.l,top:ele.t},600,3);
+            var objTemp={l:this,t:this.t};
+            this.l=ele.l;
+            this.t=ele.t;
+            ele.l=objTemp.l;
+            ele.t=objTemp.t;
+
+
+        }else{
+            animate(this,{left:this.l,top:this.t},500,4)
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #content{
+            width: 1000px;
+            height: 300px;
+            position: relative;
+            margin: 10px auto;
+            background: #fcc;
+        }
+
+        #content div{
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            background: black;
+            background-image: url("banner1.jpg");
+
+
+        }
+
+
+    </style>
+</head>
+<body>
+<!--<img src="banner1.jpg" width="1000" height="300">-->
+<div id="content"></div>
+<script src="../../js/animate.js"></script>
+<script>
+    var content=document.getElementById("content");
+    var rows=3;
+    var cols=10;
+    var a=[];
+    for(var i=0;i<rows*cols;i++){
+        var ele=document.createElement("div");
+        content.appendChild(ele);
+        ele.l=i%cols*100;
+        ele.t=Math.floor(i/cols)*100;
+        if(Math.floor(i/cols)==0){
+            ele.style.left=-300+"px";
+            ele.style.top=-300+"px";
+        }else if(Math.floor(i/cols)==1){
+            ele.style.left=-300+"px";
+            ele.style.top=ele.t+"px";
+        }else{
+            ele.style.left=-300+"px";
+            ele.style.top=300+"px";
+        }
+
+        ele.style.opacity=1;
+        ele.style.backgroundPosition="-"+i%cols*100+"px -"+Math.floor(i/cols)*100+"px";
+        a.push(ele);
+    }
+
+    content.onclick=function(){
+        for(var i=0;i< a.length;i++){
+           ;(function(i){
+                window.setTimeout(function(){
+                    animate(a[i],{left:a[i].l,top:a[i].t,opacity:1},800,2);
+                },i%cols*200)
+            })(i);
+        }
+    }
+
+
+</script>
+</body>
+</html>

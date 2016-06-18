@@ -1,0 +1,25 @@
+
+什么是ajax
+全称是 异步javascript和XML
+
+什么是网页的异步和同步？
+同步：当前页面有任何一个和sever交互的操作，整个页面必须全部刷新。例如比较老的asp和jsp的网站
+异步：当与server进行交互的时候，不需要整站刷新，只按需加载响应的内容即可
+
+ajax的同步和异步？
+同步：ajax操作的http事务完成之后，send方法后面的逻辑才可以执行
+异步：不需要等待http事务完成，可以直接执行send方法后面的逻辑
+
+使用xhr对象的同步请求页面是什么效果？
+如何实现ajax：两种方式，原生和jQuerys
+1、创建xhr对象（XMLHttpRequest）
+2、使用open方法发起请求，open的五个参数：请求方式、链接、是否异步、用户名、密码
+3、xhr.send()->get和post请求方式的不同
+4、xhr.onreadystatechange事件响应之后，做相应的处理
+readyState是什么意思？这个属性的值是多少，分别表示什么意义？
+status是什么意思？这个属性的值可能是多少？分别表示什么意思
+
+5、用什么属性来得到应答的数据？
+xhr.responseText/xhr.resopnseXML/xhr.response
+
+6、注意工作中要和后台程序员预定好交互的数据格式（数据接口）

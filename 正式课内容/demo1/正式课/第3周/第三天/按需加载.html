@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img {
+            display: block;
+            margin: 10px;
+            border: none;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466924.jpg" src="default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466925.jpg" src="default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466926.jpg" src="default.gif">
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466927.jpg" src="default.gif">
+
+<img realSrc="http://pic1.win4000.com/pic/9/8c/0a08466928.jpg" src="default.gif">
+
+
+<script>
+    function offset(ele) {
+        var l = ele.offsetLeft;
+        var t = ele.offsetTop;
+        var p = ele.offsetParent;
+        while (p) {
+            l += p.offsetLeft;
+            t += p.offsetTop;
+            p = p.offsetParent;
+        }
+        return {l: l, t: t};
+    }
+    var oImags = document.getElementsByTagName("img");
+    //    for(var i=0;i<oImags.length;i++){
+    //        var oImg=oImags[i];
+    //        oImg.t=offset(oImg).t;
+    //    }
+    window.onscroll = function () {
+        var h = (document.documentElement.scrollTop || document.body.scrollTop) + (document.documentElement.clientHeight || document.body.clientHeight);
+        for (var i = 0; i < oImags.length; i++) {
+            var oImg = oImags[i];
+            oImg.t = offset(oImg).t;
+            if (!oImg.flag)
+                if (h > oImags[i].t) {
+                    oImags[i].src = "../../../o_loading.gif";
+                    var imgTemp = new Image;
+                    imgTemp.src = oImags[i].getAttribute("realSrc") + "?" + Math.random();
+
+                    imgTemp.onload = function (i) {
+                        return function () {
+                            oImags[i].src = this.src;
+
+                        }
+                    }(i);
+                    oImg.flag = true;
+                    imgTemp.onerror = function () {
+                        console.log("出错了");
+                    }
+                }
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index3.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <meta name="viewport" content="width=640, user-scalable=no,target-densityDpi=device-dpi">
+    <script src="js/jquery-1.12.1.js"></script>
+    <script src="js/index3.js"></script>
+</head>
+<body>
+<div id="main">
+    <div class="title">
+        <span>个人简历</span>
+    </div>
+    <div id="musicBtn" ></div>
+    <audio id="audioDemo" preload="none" loop>
+        <source src="imges/Linkin%20Park%20-%20In%20The%20End.mp3" type="audio/mpeg"/>
+        <source src="imges/Linkin%20Park%20-%20In%20The%20End.wav" type="audio/wav"/>
+        <source src="imges/Linkin%20Park%20-%20In%20The%20End.ogg" type="audio/ogg"/>
+        Your browser is not support audio tag~~
+    </audio>
+
+    <ul id="list">
+        <!--第一页-->
+        <li id="hello" style=" background: url(imges/yq0KYVb6jtOAScyHAAGZmS0P2yw442.jpg);" class="zIndex">
+           <div class="top animated bounceInLeft">HI,你好</div>
+           <div class="middle">
+               <div class="loader"></div>
+
+           </div>
+           <div class="last">
+               <ul>
+                   <li class="animated rotateInUpLeft" >我是郑龙</li>
+                   <li><div class="hello_move move animated rotateInUpLeft" ></div></li>
+                   <li class="animated rotateInUpLeft">进入我的世界</li>
+               </ul>
+           </div>
+        </li>
+
+        <!--第二页-->
+        <li style=" background: url(imges/yq0KYVb6jtOAScyHAAGZmS0P2yw442.jpg); display: none" class="aboutMe">
+            <div class="ab_box">
+            <div class="ab_sc">
+                <span class="sc1 animated zoomInUp">XXXX大学</span>
+                <span class="sc2 animated zoomInUp">XXX专业</span>
+            </div>
+            <div class="move1 move animated zoomInUp"></div>
+            <ul class="ab_now animated zoomInUp">
+                <li class="ab_year animated zoomInUp">XX年工作经验</li>
+                <li class="move2 move animated zoomInUp"></li>
+                <li class="ab_add animated zoomInUp">现居住地xxxx</li>
+            </ul>
+            <div class="move3 move animated zoomInUp"></div>
+            <ul class="ab_Emil animated zoomInUp">
+                <li>
+                    <img src="imges/yq0KYFb6l_CAXkIAAAAEgdf9U7Y047.png" alt="">
+                    <p>11111111@qq.com</p>
+                </li>
+                <li>
+                    <img src="imges/yq0KYVb6l_qAKgo5AAAEvjqPgDk871.png" alt="">
+                    <p>113333333333</p>
+
+                </li>
+
+            </ul>
+            </div>
+        </li>
+        <!--第三页-->
+        <li style=" background: url(imges/yq0KYVb6jtOAScyHAAGZmS0P2yw442.jpg);display: none" class="chorce">
+            <div class="read animated bounceInLeft">选择你感兴趣的阅读</div>
+           <ul class="chorce-list">
+               <li class="chorce-job">
+                   <img src="imges/yq0KYFb6n4mAdkCTAAAdxXP4x-Y169.png" alt="" >
+                   <p>工作经历</p>
+               </li>
+
+               <li>
+                   <img src="imges/yq0KYFb6n4mAWnaJAAAQXR00YYo310.png" alt="">
+                   <p>个人技能</p>
+               </li>
+
+           </ul>
+
+
+
+        </li>
+        <!--第四页-->
+        <li  style=" background: url(imges/yq0KYVb6jtOAScyHAAGZmS0P2yw442.jpg);display: none" class="job">
+            <div class="job_box">
+                <div class="job_experience">
+                    <ul class="job_list">
+                        <li class="animated rollIn"><h3>工作经验</h3></li>
+                        <li class="move4 move animated rollIn"></li>
+                        <li class="animated rollIn">
+                            <span>2013.6-2014.8</span>
+                            <span>曾在XX公司任职</span>
+                        </li>
+                        <li class="animated rollIn">
+                            <span>2013.6-2014.8</span>
+                            <span>曾在XX公司任职</span>
+                        </li>
+                        <li class="animated rollIn delay"><h3>工作经验</h3></li>
+                        <li class="move5 move animated rollIn delay"></li>
+                        <li class="animated rollIn delay" >
+                            <span>2013.6-2014.8</span>
+                            <span>曾在XX公司任职</span>
+                        </li>
+                        <li class="animated rollIn delay" >
+                            <span>2013.6-2014.8</span>
+                            <span>曾在XX公司任职</span>
+                        </li>
+                    </ul>
+                    <div class="goblack">
+                        <img src="imges/yq0KYVb6pReATvrgAAANW6pjYFk803.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!--第五页-->
+        <li style="background: url(imges/yq0KYVb6jtOAScyHAAGZmS0P2yw442.jpg);display: none" class="power">
+            <div class="power_box">
+                <ul class="power_list">
+                    <li class="power_title" ><h3>个人技能</h3></li>
+                    <li class="move6 move"></li>
+                    <li class="picture">
+                        <div id="power"></div>
+
+                    </li>
+                    <li class="move7 move"></li>
+                    <li class="power_more">
+                        <span class="power1 power_an">原生javaScript</span>
+                        <span class="power2 power_an">CSS3</span>
+                        <span class="power3 power_an">HTML5</span>
+                        <span class="power4 power_an">JQuery</span>
+                        <span class="power5 power_an">其他</span>
+                    </li>
+                </ul>
+                <div class="goblack">
+                    <img src="imges/yq0KYVb6pReATvrgAAANW6pjYFk803.png" alt="">
+                    </div>
+            </div>
+        </li>
+
+    </ul>
+    <div id="arrow"></div>
+</div>
+</body>
+<script src="js/music.js"></script>
+<script src="js/echarts.simple.min.js"></script>
+<script src="js/power.js"></script>
+</html>

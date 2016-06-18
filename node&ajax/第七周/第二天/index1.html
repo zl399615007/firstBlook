@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<p>使网站实现保存记录和查询记录的功能</p>
+<div id="div1">
+
+
+<form method="get" >
+    姓名：<input type="text" name="name" value="郑龙"><br>
+    性别：<input type="radio" name="gender"  checked value="男">男
+    <input type="radio" name="gender" value="女">女
+    <input type="radio" name="gender" value="其他">其他
+    <br>
+    年龄：<input type="text" name="age" value="24"><br>
+    爱好：<input type="checkbox" name="hobby" value="wow">wow
+    <input type="checkbox" name="hobby" value="DOTA">DOTA
+    <input type="checkbox" name="hobby" value="LOL">LOL
+    <input type="checkbox" name="hobby" value="cf">cf
+    <br>
+    所学课程
+    <select multiple name="course" >
+        <option>wow</option>
+        <option>dota</option>
+        <option>lol</option>
+        <option>cf</option>
+        <option>cs</option>
+        <option>打豆豆</option>
+    </select><br>
+
+    战绩：
+    <select name="degree">
+        <option>超神</option>
+        <option>五杀</option>
+        <option>四杀</option>
+        <option>三杀</option>
+        <option>超鬼</option>
+    </select>
+    <!--当触发类型为submit的按钮时，会触发form的submit默认行为-->
+    <input type="submit" value="提交" name="btn">
+</form>
+</div>
+<div id="content">
+    这里显示服务器端保存的数据
+</div>
+<script>
+    var oBtn=document.getElementsByName("btn").item(0);
+    oBtn.onclick=function (){
+
+        var xhr=new XMLHttpRequest();
+
+        xhr.open("get","ajax",true);
+        xhr.onreadystatechange=function (){
+            if(xhr.readyState==4&&xhr.status==200){
+                document.getElementById("content").innerHTML=xhr.responseText;
+
+            }
+        }
+
+
+        xhr.send();
+    }
+
+    //表单序列化：
+    //问题1：我们要用JS来完成数据提交，如何用JS实现表单序列化
+    //问题2：如何把用ajax提交上来的数据保存到data.txt文件中，
+    //问题3：如何把提交到后台数据以异步的方式显示到页上
+    //问题4：什么跨域？JSONP跨域是怎么回事
+
+
+
+</script>
+</body>
+</html>

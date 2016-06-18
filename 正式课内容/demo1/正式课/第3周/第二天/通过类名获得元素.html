@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li class="fgj dg select a b cd">1</li>
+    <li class="fgj dg a b c">2</li>
+    <li class="fgj select a b c">3</li>
+    <li class="fgj dg  b c">4</li>
+    <li class="fgj select a b c">5</li>
+    <li class="fgj dg a bc">6</li>
+    <li class="fgj dg a b c d">7</li>
+    <li class="fgj dg a b-select-cd">8</li>
+</ul>
+<script>
+    function getElesByClass (str){
+        str=str.replace(/^ +| +$/g,"");
+        var aClassName=str.split(/ +/);
+        var eles=document.getElementsByTagName("*");
+        for(var i=0;i<aClassName.length;i++){
+            var a=[];
+            var reg=new RegExp("(?:^| )"+aClassName[i]+"(?: |$)");
+            for(var j=0;j<eles.length;j++){
+                if(reg.test(eles[j].className)){
+                    a.push(eles[j]);
+                }
+            }
+            eles=a;
+        }
+        return eles;
+    }
+    var str="select  a";
+
+    console.log(getElesByClass(str));
+    //获取所有类名叫“select”的元素
+    //第一步获得所有元素
+//    var eles=document.getElementsByTagName("*");
+//    //第二步以每个元素的className属性作为过滤的依据
+//    var a=[];
+//    var reg=/(^| )select( |$)/;
+//
+//    for(var i=0;i<eles.length;i++){
+//        var ele=eles[i];
+//        if(reg.test(ele.className)){
+//            a.push(ele)
+//        }
+//    }
+//    alert(a);
+//
+
+
+
+  // 获取所有类名叫“select,a,b”的元素
+//   function byClass(className,eles){
+//        var reg=new RegExp("(?:^| )"+className+"(?: |$)");
+//        var a=[];
+//        //var eles=document.getElementsByTagName("*");
+//        for(var i=0;i<eles.length;i++){
+//            var ele=eles[i];
+//            if(reg.test(ele.className)){
+//                a.push(ele);
+//            }
+//        }
+//        return a;
+//    }
+//    var a=document.getElementsByTagName("*");
+//     a=byClass("a",a);
+//    a=byClass("b",a);
+//    a=byClass("select",a);
+//    for(var i=0;i< a.length;i++){
+//        a[i].style.backgroundColor="red";
+//    }
+
+    //var reg=/^ +| +$/g; //匹配首或尾包含一到多个空格的字符串
+
+
+
+
+//    byClass:function(className){
+//        var reg=new RegExp("(?:^| )"+className+"(?: |$)");
+//        var a=[];
+//        var eles=document.getElementsByTagName("*");
+//        for(var i=0;i<eles.length;i++){
+//            var ele=eles[i];
+//            if(reg.test(ele.className)){
+//                a.push(ele);
+//            }
+//        }
+//        return a;
+//    },
+//    getElesByClass:function(str){
+//        var regTrim=/^ +| +$/g;
+//        str=str.replace(regTrim,"");
+//        var aClassName=str.split(/ +/);
+//        var eles=document.getElementsByTagName("*");
+//        for(var i=0;i<aClassName.length;i++){
+//            eles=byClass(aClassName[i],eles);
+//        }
+//        return eles;
+//    }
+</script>
+</body>
+</html>

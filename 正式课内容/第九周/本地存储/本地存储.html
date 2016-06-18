@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+</head>
+<body>
+<script>
+    //把一些相关信息存储到本地，不管页面是否刷新，都可以获取到之前存储的内容
+    //实现A页面和B页面之间的通信
+    //1.url地址栏问号传参（uri是url的父集->统一资源定位符）
+    //获取问号后面的参数
+    //进行字符串的拆分查找：indexof/substring/split
+    //使用正则
+    function queryURLParameter(url) {
+        var obj={};
+        var reg=/([^?&=]+)=([^?&=]+)/g;
+        var ary=reg.exec(url);
+        while (ary){
+            obj[ary[1]]=ary[2];
+            ary=reg.exec(url);
+        }
+        return obj;
+    }
+
+    //使用a标签处理
+
+    function queryURLParameter(url) {
+        var obj={};
+        var link=document.createElement("a");
+        link.href=url;
+//        link.hostname 域名
+//        link.pathname 地址
+//        link.search   问号后面传递的参数
+        return obj;
+    }
+
+    //应用本地存储来进行页面之间的相互通信
+    //cookie  兼容所有浏览器
+    //window.localStorage H5新增，不兼容IE6~8
+
+
+</script>
+</body>
+</html>

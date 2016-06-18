@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #div1,#div2{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            background: red;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="div1">div1</div>
+<div id="div2" style="background: blue;top: 300px;left: 150px;"></div>
+<script src="../../js/event.js"></script>
+<script src="../../js/drge1.js"></script>
+<script>
+
+var eles=document.getElementsByTagName("div");
+var zIndex=1;
+
+function increaseIndex(){
+    this.style.zIndex=++zIndex;
+}
+
+    for(var i=0;i<eles.length;i++){
+        on(eles[i],"mousedown",down);
+
+        on(eles[i],"selfdragstart",clearEffct);//selfdragstart是拖拽开始的代号
+        on(eles[i],"selfdragging",getSpeed);//selfdragging拖拽进行中的代号
+        on(eles[i],"selfdragend",fly);
+        on(eles[i],"selfdragend",drop);
+        on(eles[i],"selfdragstart",increaseIndex)
+
+    }
+
+
+
+</script>
+
+
+</body>
+</html>
